@@ -67,6 +67,13 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
+const Price = styled.span`
+  font-weight: 300;
+  font-size: 20px;
+  cursor: default;
+  margin-right: 10px;
+`;
+
 const Navbar = () => {
   return (
     <Container>
@@ -85,6 +92,7 @@ const Navbar = () => {
           <MenuItem>REGISTRATE</MenuItem>
           <MenuItem>INGRESÁ</MenuItem>
           <MenuItem>
+            <Price>$ 123,45</Price>
             <Badge badgeContent={4} color="primary">              
               <Link to="/cart">
                 <ShoppingCartOutlined />
