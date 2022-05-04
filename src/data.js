@@ -1,23 +1,23 @@
 export const sliderItems = [
     {
       id: 1,
-      img: "https://i.ibb.co/XsdmR2c/1.png",
-      title: "SUMMER SALE",
-      desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
-      bg: "f5fafd",
-    },
-    {
-      id: 2,
-      img: "https://i.ibb.co/DG69bQ4/2.png",
-      title: "AUTUMN COLLECTION",
-      desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/c_fill,h_1000,q_100,w_1000,x_0,y_0/v1651655954/app-granja/frutas_invierno_hyllkv.png",
+      title: "FRUTAS DE TEMPORADA",
+      desc: "¿PRODUCTOS FRESCOS? ¿DESCUENTOS DEL 30%? ¿DISPONIBILIDAD? ¿VARIEDAD?  ¡LO TENEMOS TODO!",
       bg: "fcf1ed",
     },
     {
       id: 3,
-      img: "https://i.ibb.co/cXFnLLV/3.png",
-      title: "LOUNGEWEAR LOVE",
-      desc: "DON'T COMPROMISE ON STYLE! GET FLAT 30% OFF FOR NEW ARRIVALS.",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/c_lpad,h_1000,w_1000/v1651656544/app-granja/carne_x679mb.png",
+      title: "AMOR A LA CARNE",
+      desc: "¿PRODUCTOS FRESCOS? ¿DESCUENTOS DEL 30%? ¿DISPONIBILIDAD? ¿VARIEDAD?  ¡LO TENEMOS TODO!",      
+      bg: "f5fafd",
+    },    
+    {
+      id: 2,
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/c_lpad,h_1000,w_1000/v1651654451/app-granja/huevos_atbcco.png",
+      title: "OFERTAS DE INVIERNO",
+      desc: "¿PRODUCTOS FRESCOS? ¿DESCUENTOS DEL 30%? ¿DISPONIBILIDAD? ¿VARIEDAD?  ¡LO TENEMOS TODO!",
       bg: "fbf0f4",
     },
   ];
