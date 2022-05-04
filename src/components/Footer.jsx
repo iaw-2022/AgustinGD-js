@@ -90,9 +90,7 @@ const Footer = () => {
       <Left>
         <Logo>LAMA.</Logo>
         <Desc>
-          There are many variations of passages of Lorem Ipsum available, but
-          the majority have suffered alteration in some form, by injected
-          humour, or randomised words which don’t look even slightly believable.
+          Nuestras redes sociales.
         </Desc>
         <SocialContainer>
           <SocialIcon color="3B5999">
@@ -110,22 +108,19 @@ const Footer = () => {
         </SocialContainer>
       </Left>
       <Center>
-        <Title>Useful Links</Title>
+        <Title>Links Útiles</Title>
         <List>
           <ListItem>Home</ListItem>
-          <ListItem>Cart</ListItem>
-          <ListItem>Man Fashion</ListItem>
-          <ListItem>Woman Fashion</ListItem>
+          <ListItem>Carrito</ListItem>
+          <ListItem>Carnes</ListItem>
+          <ListItem>Lacteos</ListItem>
           <ListItem>Accessories</ListItem>
-          <ListItem>My Account</ListItem>
-          <ListItem>Order Tracking</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Wishlist</ListItem>
-          <ListItem>Terms</ListItem>
+          <ListItem>Mi Cuenta</ListItem>
+          <ListItem>Terminos y condiciones</ListItem>
         </List>
       </Center>
       <Right>
-        <Title>Contact</Title>
+        <Title>Contacto</Title>
         <ContactItem>
           <Room style={{marginRight:"10px"}}/> 622 Dixie Path , South Tobinchester 98336
         </ContactItem>

@@ -72,9 +72,9 @@ const Navbar = () => {
     <Container>
       <Wrapper>
         <Left>
-          <Language>EN</Language>
+          <Language>ES</Language>
           <SearchContainer>
-            <Input placeholder="Search" />
+            <Input placeholder="Buscar" />
             <Search style={{ color: "gray", fontSize: 16 }} />
           </SearchContainer>
         </Left>
@@ -82,8 +82,8 @@ const Navbar = () => {
           <Logo>LAMA.</Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTER</MenuItem>
-          <MenuItem>SIGN IN</MenuItem>
+          <MenuItem>REGISTRATE</MenuItem>
+          <MenuItem>INGRESÁ</MenuItem>
           <MenuItem>
             <Badge badgeContent={4} color="primary">              
               <Link to="/cart">

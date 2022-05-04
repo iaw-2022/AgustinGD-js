@@ -50,9 +50,9 @@ const Newsletter = () => {
   return (
     <Container>
       <Title>Newsletter</Title>
-      <Desc>Get timely updates from your favorite products.</Desc>
+      <Desc>No te pierdas las noticias sobre nuestros productos.</Desc>
       <InputContainer>
-        <Input placeholder="Your email" />
+        <Input placeholder="Tu email" />
         <Button>
           <Send />
         </Button>
