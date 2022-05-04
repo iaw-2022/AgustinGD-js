@@ -8,14 +8,15 @@ import Products from "../components/Products";
 import Slider from "./../components/Slider";
 
 const Home = (props) => {
-  const {seleccionarProducto } = props;
+  const {productosEnCarrito, seleccionarProducto, sumarAlCarrito} = props;
+  
   return (
     <div>
       <Announcement/>
-      <Navbar/>
+      <Navbar productosEnCarrito={productosEnCarrito}/>
       <Slider/>
       <Categories/>
-      <Products seleccionarProducto={seleccionarProducto}/>
+      <Products seleccionarProducto={seleccionarProducto} sumarAlCarrito={sumarAlCarrito}/>
       <Newsletter/>
       <Footer/>
     </div>

@@ -4,6 +4,7 @@ import React from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { Link } from "react-router-dom";
+import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../utils/OperacionesCarrito";
 
 const Container = styled.div`
   height: 60px;
@@ -74,12 +75,16 @@ const Price = styled.span`
   margin-right: 10px;
 `;
 
-const Navbar = () => {
+const Navbar = (props) => {
+  const {productosEnCarrito} = props;
+  const precioTotalProductosCarrito = PrecioTotalProductosCarrito(productosEnCarrito);
+  const cantidadTotalProductosCarrito = CantidadTotalProductosCarrito(productosEnCarrito);
+
   return (
     <Container>
       <Wrapper>
         <Left>
-          <Language>ES</Language>
+          <Language>ES </Language>
           <SearchContainer>
             <Input placeholder="Buscar" />
             <Search style={{ color: "gray", fontSize: 16 }} />
@@ -92,8 +97,8 @@ const Navbar = () => {
           <MenuItem>REGISTRATE</MenuItem>
           <MenuItem>INGRESÁ</MenuItem>
           <MenuItem>
-            <Price>$ 123,45</Price>
-            <Badge badgeContent={4} color="primary">              
+            <Price>$ {precioTotalProductosCarrito}</Price>
+            <Badge badgeContent={cantidadTotalProductosCarrito} color="primary">              
               <Link to="/cart">
                 <ShoppingCartOutlined style={{ color: "black"}}/>
               </Link>

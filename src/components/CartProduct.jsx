@@ -64,17 +64,17 @@ const ProductPrice = styled.div`
 `;
 
 const CartProduct = (props) => {
-    const {item} = props;
+    const {producto, sumarAlCarrito, restarAlCarrito} = props;
     return (
         <Product>
         <ProductDetail>
-          <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" />
+          <Image src={producto.img} />
           <Details>
             <ProductName>
-              <b>Product:</b> JESSIE THUNDER SHOES
+              <b>Producto:</b> {producto.nombre}
             </ProductName>
             <ProductId>
-              <b>ID:</b> 93813718293
+              <b>ID:</b> {producto.id}
             </ProductId>
             <ProductColor color="black" />
             <ProductSize>
@@ -84,11 +84,11 @@ const CartProduct = (props) => {
         </ProductDetail>
         <PriceDetail>
           <ProductAmountContainer>
-            <Add />
-            <ProductAmount>2</ProductAmount>
-            <Remove />
+            <Add style={{cursor: "pointer"}} onClick={() => sumarAlCarrito(producto)}/>
+            <ProductAmount>{producto.cantidad}</ProductAmount>
+            <Remove style={{cursor: "pointer"}} onClick={() => restarAlCarrito(producto)}/>
           </ProductAmountContainer>
-          <ProductPrice>$ 30</ProductPrice>
+          <ProductPrice>$ {producto.precioPorUnidad}</ProductPrice>
         </PriceDetail>
         </Product>
     );

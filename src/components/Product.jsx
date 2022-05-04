@@ -68,16 +68,17 @@ const Icon = styled.div`
 `;
 
 const Product = (props) => {
-  const {item, seleccionarProducto } = props;
+  const {producto, seleccionarProducto, sumarAlCarrito} = props;
+  
   return (
     <Container>
       <Circle />
-      <Image src={item.img} />
+      <Image src={producto.img} />
       <Info>
-        <Icon>
-          <ShoppingCartOutlined />
+        <Icon onClick={() => sumarAlCarrito(producto)}>
+          <ShoppingCartOutlined style={{ color: "black"}}/>
         </Icon>
-        <Link onClick={() => seleccionarProducto(item)} to="/product">
+        <Link onClick={() => seleccionarProducto(producto)} to="/product">
           <Icon>
             <SearchOutlined style={{ color: "black"}}/>
           </Icon>

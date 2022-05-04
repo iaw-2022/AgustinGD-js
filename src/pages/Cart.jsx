@@ -4,6 +4,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import CartProduct from "../components/CartProduct";
 import { mobile } from "../responsive";
+import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../utils/OperacionesCarrito";
 
 const Container = styled.div``;
 
@@ -92,28 +93,50 @@ const Button = styled.button`
   font-weight: 600;
 `;
 
-const Cart = () => {
+const Cart = (props) => {
+  const {productosEnCarrito, sumarAlCarrito, restarAlCarrito} = props;
+  const precioTotalProductosCarrito = PrecioTotalProductosCarrito(productosEnCarrito);
+  const cantidadTotalProductosCarrito = CantidadTotalProductosCarrito(productosEnCarrito);
+
+  const mostrarProductosCarrito = () =>{
+    const productosCarrito = [];
+    var producto = {};
+    
+    for (var i=0; i < productosEnCarrito.length; i++) {
+      producto = productosEnCarrito[i];
+
+      if(i === 0){
+        productosCarrito.push(
+          <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito}/>
+        )
+      } else{
+        productosCarrito.push(          
+            <Hr />,
+            <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito}/>          
+        )
+      };
+    };
+
+    return productosCarrito;
+  }
+
   return (
     <Container>
-      <Navbar />
+      <Navbar productosEnCarrito={productosEnCarrito}/>
       <Announcement />
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>Shopping Bag({cantidadTotalProductosCarrito})</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
         </Top>
         <Bottom>
           <Info>
-
-            <CartProduct />
-            <Hr />
-            <CartProduct />
-
+            {mostrarProductosCarrito()}
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
@@ -131,7 +154,7 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>$ {precioTotalProductosCarrito}</SummaryItemPrice>
             </SummaryItem>
             <Button>CHECKOUT NOW</Button>
           </Summary>

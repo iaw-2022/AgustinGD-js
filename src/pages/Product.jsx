@@ -116,11 +116,11 @@ const Button = styled.button`
 `;
 
 const Product = (props) => {
-  const {productoSeleccionado} = props
+  const {productosEnCarrito, productoSeleccionado} = props
 
   return (
     <Container>
-      <Navbar />
+      <Navbar productosEnCarrito={productosEnCarrito}/>
       <Announcement />
       <Wrapper>
         <ImgContainer>

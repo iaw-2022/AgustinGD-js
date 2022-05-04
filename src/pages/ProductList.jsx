@@ -37,11 +37,11 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const ProductList = (props) => {
-  const {seleccionarProducto} = props;
+  const {productosEnCarrito, seleccionarProducto, sumarAlCarrito} = props;
 
   return (
     <Container>
-      <Navbar />
+      <Navbar productosEnCarrito={productosEnCarrito}/>
       <Announcement />
       <Title>Dresses</Title>
       <FilterContainer>
@@ -78,7 +78,7 @@ const ProductList = (props) => {
           </Select>
         </Filter>
       </FilterContainer>
-      <Products seleccionarProducto={seleccionarProducto}/>
+      <Products seleccionarProducto={seleccionarProducto} sumarAlCarrito={sumarAlCarrito}/>
       <Newsletter />
       <Footer />
     </Container>
