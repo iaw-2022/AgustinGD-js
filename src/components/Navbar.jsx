@@ -95,7 +95,7 @@ const Navbar = () => {
             <Price>$ 123,45</Price>
             <Badge badgeContent={4} color="primary">              
               <Link to="/cart">
-                <ShoppingCartOutlined />
+                <ShoppingCartOutlined style={{ color: "black"}}/>
               </Link>
             </Badge>
           </MenuItem>

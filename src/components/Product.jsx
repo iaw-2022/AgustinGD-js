@@ -79,7 +79,7 @@ const Product = (props) => {
         </Icon>
         <Link onClick={() => seleccionarProducto(item)} to="/product">
           <Icon>
-            <SearchOutlined />
+            <SearchOutlined style={{ color: "black"}}/>
           </Icon>
         </Link>        
         <Icon>
