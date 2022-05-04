@@ -36,7 +36,9 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 
-const ProductList = () => {
+const ProductList = (props) => {
+  const {seleccionarProducto} = props;
+
   return (
     <Container>
       <Navbar />
@@ -76,7 +78,7 @@ const ProductList = () => {
           </Select>
         </Filter>
       </FilterContainer>
-      <Products />
+      <Products seleccionarProducto={seleccionarProducto}/>
       <Newsletter />
       <Footer />
     </Container>
