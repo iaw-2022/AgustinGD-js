@@ -5,8 +5,26 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
+import { Link } from "react-router-dom";
 
 const Container = styled.div``;
+
+const Top = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+`;
+
+const TopButton = styled.button`
+  padding: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  border: ${(props) => props.type === "filled" && "none"};
+  background-color: ${(props) =>
+    props.type === "filled" ? "black" : "transparent"};
+  color: ${(props) => props.type === "filled" && "white"};
+`;
 
 const Wrapper = styled.div`
   padding: 50px;
@@ -122,6 +140,11 @@ const Product = (props) => {
     <Container>
       <Navbar productosEnCarrito={productosEnCarrito}/>
       <Announcement />
+      <Top>       
+        <Link to="/">
+          <TopButton>CONTINUE SHOPPING</TopButton>
+        </Link>
+      </Top>
       <Wrapper>
         <ImgContainer>
           <Image src={productoSeleccionado.img} />

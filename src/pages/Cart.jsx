@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import CartProduct from "../components/CartProduct";
 import { mobile } from "../responsive";
 import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../utils/OperacionesCarrito";
+import { Link } from "react-router-dom";
 
 const Container = styled.div``;
 
@@ -127,7 +128,9 @@ const Cart = (props) => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
-          <TopButton>CONTINUE SHOPPING</TopButton>
+          <Link to="/">
+            <TopButton >CONTINUE SHOPPING</TopButton>
+          </Link>          
           <TopTexts>
             <TopText>Shopping Bag({cantidadTotalProductosCarrito})</TopText>
             <TopText>Your Wishlist (0)</TopText>
