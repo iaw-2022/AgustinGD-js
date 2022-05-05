@@ -11,9 +11,9 @@ const Home = (props) => {
   const {productosEnCarrito, seleccionarProducto, sumarAlCarrito} = props;
   
   return (
-    <div>
-      <Announcement/>
+    <div>      
       <Navbar productosEnCarrito={productosEnCarrito}/>
+      <Announcement/>
       <Slider/>
       <Categories/>
       <Products seleccionarProducto={seleccionarProducto} sumarAlCarrito={sumarAlCarrito}/>

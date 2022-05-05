@@ -8,6 +8,11 @@ import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../u
 
 const Container = styled.div`
   height: 60px;
+  background: #F0F8FF;
+  position: fixed;  
+  width: 100%;
+  overflow: hidden;
+  z-index: 4;
   ${mobile({ height: "50px" })}
 `;
 
