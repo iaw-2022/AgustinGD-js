@@ -134,8 +134,8 @@ const Button = styled.button`
 `;
 
 const Product = (props) => {
-  const {productosEnCarrito, productoSeleccionado} = props
-
+  const {productosEnCarrito, productoSeleccionado, sumarAlCarrito} = props;
+  
   return (
     <Container>
       <Navbar productosEnCarrito={productosEnCarrito}/>
@@ -179,7 +179,7 @@ const Product = (props) => {
               <Amount>1</Amount>
               <Add />
             </AmountContainer>
-            <Button>ADD TO CART</Button>
+            <Button onClick={() => sumarAlCarrito(productoSeleccionado)}>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
