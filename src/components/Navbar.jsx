@@ -74,13 +74,6 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
-const Price = styled.span`
-  font-weight: 300;
-  font-size: 20px;
-  cursor: default;
-  margin-right: 10px;
-`;
-
 const Navbar = (props) => {
   const {productosEnCarrito} = props;
   const precioTotalProductosCarrito = PrecioTotalProductosCarrito(productosEnCarrito);
