@@ -6,7 +6,8 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import { Link } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 
 const Container = styled.div``;
 
@@ -163,7 +164,7 @@ const Product = (props) => {
           <Desc>
             {productoSeleccionado.descripcion}
           </Desc>
-          <Price>$ {productoSeleccionado.precioPorUnidad}</Price>
+          <Price>{formatoMonedaArgentina(productoSeleccionado.precioPorUnidad)}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>

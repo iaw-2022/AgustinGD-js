@@ -6,6 +6,7 @@ import CartProduct from "../components/CartProduct";
 import { mobile } from "../responsive";
 import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../utils/OperacionesCarrito";
 import { Link } from "react-router-dom";
+import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 
 const Container = styled.div``;
 
@@ -157,7 +158,7 @@ const Cart = (props) => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>$ {precioTotalProductosCarrito}</SummaryItemPrice>
+              <SummaryItemPrice>{formatoMonedaArgentina(precioTotalProductosCarrito)}</SummaryItemPrice>
             </SummaryItem>
             <Button>CHECKOUT NOW</Button>
           </Summary>

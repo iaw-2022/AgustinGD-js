@@ -1,6 +1,7 @@
 import { Add, Remove } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
+import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 
 const Product = styled.div`
 display: flex;
@@ -88,7 +89,7 @@ const CartProduct = (props) => {
             <ProductAmount>{producto.cantidad}</ProductAmount>
             <Remove style={{cursor: "pointer"}} onClick={() => restarAlCarrito(producto)}/>
           </ProductAmountContainer>
-          <ProductPrice>$ {producto.precioPorUnidad}</ProductPrice>
+          <ProductPrice>{formatoMonedaArgentina(producto.precioPorUnidad)}</ProductPrice>
         </PriceDetail>
         </Product>
     );
