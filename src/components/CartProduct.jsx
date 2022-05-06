@@ -10,12 +10,12 @@ const Product = styled.div`
 `;
 
 const ProductDetail = styled.div`
-  flex-direction: row;
+  flex: 2;
+  display: flex;
 `;
 
 const Image = styled.img`
   width: 200px;
-  float: left;
 `;
 
 const Details = styled.div`
@@ -23,7 +23,6 @@ const Details = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  float: left;
 `;
 
 const ProductName = styled.span``;
@@ -61,59 +60,47 @@ const ProductAmount = styled.div`
 
 const ProductPrice = styled.div`
   font-size: 30px;
-  font-weight: 200;
+  font-weight: 200;  
+`;
+
+const PriceContainer = styled.div`
+  display: flex;
+  flex-direction: row;   
+  align-items: center;
   ${mobile({ marginBottom: "20px" })}
-`;
-
-const Actions = styled.div`
-  padding-top: 10px;
-  padding-right: 10px;
-  float: right;
-  ${mobile({ display: "none" })}
-`;
-
-const ActionsMobile = styled.div`
-  padding-top: 10px;
-  padding-right: 10px;
-  float: right;
-  display: none;
-  ${mobile({ display: "unset" })}
 `;
 
 const CartProduct = (props) => {
     const {producto, sumarAlCarrito, restarAlCarrito, removerDelcarrito} = props;
     return (
-        <Product>
-          <ProductDetail>
-            <Image src={producto.img} />
-            <Details>         
-              <ProductName>
-                <b>Producto:</b> {producto.nombre}
-              </ProductName>
-              <ProductId>
-                <b>ID:</b> {producto.id}
-              </ProductId>
-              <ProductColor color="black" />
-              <ProductSize>
-                <b>Size:</b> 37.5
-              </ProductSize>
-            </Details>
-            <ActionsMobile>
-              <ClearRounded style={{cursor: "pointer", fontSize: "40px"}} onClick={() => removerDelcarrito(producto)}/>
-            </ActionsMobile>         
-          </ProductDetail>
-        <PriceDetail>
-          <ProductAmountContainer>
-            <Add style={{cursor: "pointer"}} onClick={() => sumarAlCarrito(producto)}/>
-            <ProductAmount>{producto.cantidad}</ProductAmount>
-            <Remove style={{cursor: "pointer"}} onClick={() => restarAlCarrito(producto)}/>
-          </ProductAmountContainer>         
+      <Product>
+      <ProductDetail>
+        <Image src={producto.img} />
+        <Details>
+          <ProductName>
+            <b>Producto:</b> {producto.nombre}
+          </ProductName>
+          <ProductId>
+            <b>ID:</b> {producto.id}
+          </ProductId>
+          <ProductColor color="black" />
+          <ProductSize>
+            <b>Size:</b> 37.5
+          </ProductSize>
+        </Details>
+      </ProductDetail>
+      <PriceDetail>
+        <ProductAmountContainer>
+          <Add style={{cursor: "pointer"}} onClick={() => sumarAlCarrito(producto)}/>
+          <ProductAmount>{producto.cantidad}</ProductAmount>
+          <Remove style={{cursor: "pointer"}} onClick={() => restarAlCarrito(producto)}/>
+        </ProductAmountContainer>
+        <PriceContainer>
           <ProductPrice>{formatoMonedaArgentina(producto.precioPorUnidad)}</ProductPrice>
-        </PriceDetail>
-        <Actions>
-            <ClearRounded style={{cursor: "pointer", fontSize: "40px", float: "right"}} onClick={() => removerDelcarrito(producto)}/>
-        </Actions>
-        </Product>
+          <ClearRounded style={{cursor: "pointer", fontSize: "48px", alignSelf: "center"}} onClick={() => removerDelcarrito(producto)}/>         
+        </PriceContainer>        
+      </PriceDetail>
+      </Product>
     );
   };
   
