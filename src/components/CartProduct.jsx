@@ -72,7 +72,7 @@ const Actions = styled.div`
 `;
 
 const CartProduct = (props) => {
-    const {producto, sumarAlCarrito, restarAlCarrito} = props;
+    const {producto, sumarAlCarrito, restarAlCarrito, removerDelcarrito} = props;
     return (
         <Product>
         <ProductDetail>
@@ -99,7 +99,7 @@ const CartProduct = (props) => {
           <ProductPrice>{formatoMonedaArgentina(producto.precioPorUnidad)}</ProductPrice>
         </PriceDetail>
         <Actions>
-          <ClearRounded style={{cursor: "pointer", fontSize: "40px"}}/>
+          <ClearRounded style={{cursor: "pointer", fontSize: "40px"}} onClick={() => removerDelcarrito(producto)}/>
         </Actions>
         </Product>
     );

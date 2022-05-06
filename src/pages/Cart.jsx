@@ -96,7 +96,7 @@ const Button = styled.button`
 `;
 
 const Cart = (props) => {
-  const {productosEnCarrito, sumarAlCarrito, restarAlCarrito} = props;
+  const {productosEnCarrito, sumarAlCarrito, restarAlCarrito, removerDelcarrito} = props;
   const precioTotalProductosCarrito = PrecioTotalProductosCarrito(productosEnCarrito);
   const cantidadTotalProductosCarrito = CantidadTotalProductosCarrito(productosEnCarrito);
 
@@ -109,12 +109,12 @@ const Cart = (props) => {
 
       if(i === 0){
         productosCarrito.push(
-          <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito}/>
+          <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito} removerDelcarrito={removerDelcarrito}/>
         )
       } else{
         productosCarrito.push(          
             <Hr />,
-            <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito}/>          
+            <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito} removerDelcarrito={removerDelcarrito}/>          
         )
       };
     };
