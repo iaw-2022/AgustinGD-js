@@ -4,9 +4,9 @@ import { mobile } from "../responsive";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 
 const Product = styled.div`
-display: flex;
-justify-content: space-between;
-${mobile({ flexDirection: "column" })}
+  display: flex;
+  justify-content: space-between;
+  ${mobile({ flexDirection: "column" })}
 `;
 
 const ProductDetail = styled.div`
