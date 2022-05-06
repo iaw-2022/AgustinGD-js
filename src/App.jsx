@@ -15,7 +15,14 @@ const App = () => {
     img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/c_lpad,h_1000,w_1000/v1651656544/app-granja/carne_x679mb.png"
   };
 
-  const [productoSeleccionado, setProductoSeleccionado] = useState(productoSeleccionadoDefault);
+  const [productoSeleccionado, setProductoSeleccionado] = useState(() => {
+    const localData = localStorage.getItem('productoSeleccionado');
+    return localData ? JSON.parse(localData) : productoSeleccionadoDefault;
+  });
+  
+  useEffect(()=> {
+    localStorage.setItem('productoSeleccionado', JSON.stringify(productoSeleccionado))
+  }, [productoSeleccionado]);
 
   const seleccionarProducto = (producto) => {
     setProductoSeleccionado(producto);
