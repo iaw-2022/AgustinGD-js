@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const Container = styled.div``;
 
@@ -135,7 +136,15 @@ const Button = styled.button`
 
 const Product = (props) => {
   const {productosEnCarrito, productoSeleccionado, sumarAlCarrito} = props;
-  
+
+  const [cantidadASumar, setCantidadASumar] = useState(1);  
+
+  const sumarCantidad = () => { setCantidadASumar(cantidadASumar+1) };
+
+  const restarCantidad = () => {
+   if (cantidadASumar > 1)  setCantidadASumar(cantidadASumar-1) ;
+  };
+
   return (
     <Container>
       <Navbar productosEnCarrito={productosEnCarrito}/>
@@ -175,11 +184,11 @@ const Product = (props) => {
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick={() => restarCantidad()}/>
+              <Amount>{cantidadASumar}</Amount>
+              <Add onClick={() => sumarCantidad()}/>
             </AmountContainer>
-            <Button onClick={() => sumarAlCarrito(productoSeleccionado)}>ADD TO CART</Button>
+            <Button onClick={() => sumarAlCarrito(productoSeleccionado, cantidadASumar)}>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

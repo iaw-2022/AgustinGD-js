@@ -19,7 +19,7 @@ const App = () => {
     const localData = localStorage.getItem('productoSeleccionado');
     return localData ? JSON.parse(localData) : productoSeleccionadoDefault;
   });
-  
+
   useEffect(()=> {
     localStorage.setItem('productoSeleccionado', JSON.stringify(productoSeleccionado))
   }, [productoSeleccionado]);
@@ -38,16 +38,18 @@ const App = () => {
   }, [productosEnCarrito]);
   
 
-  const sumarAlCarrito = (producto) => {
+  const sumarAlCarrito = (producto, cantidadElegida) => {
+    const cantidadASumar = cantidadElegida ? cantidadElegida : 1;
     const existe = productosEnCarrito.find((x) => x.id === producto.id);
+    
     if (existe) {
       setproductosEnCarrito(
         productosEnCarrito.map((x) =>
-          x.id === producto.id ? { ...existe, cantidad: existe.cantidad + 1 } : x
+          x.id === producto.id ? { ...existe, cantidad: existe.cantidad + cantidadASumar } : x
         )
       );
     } else {
-      setproductosEnCarrito([...productosEnCarrito, { ...producto, cantidad: 1 }]);
+      setproductosEnCarrito([...productosEnCarrito, { ...producto, cantidad: cantidadASumar }]);
     }
   };
 
