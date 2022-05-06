@@ -1,6 +1,6 @@
 export const CantidadTotalProductosCarrito = (productosEnCarrito) => {    
     return (
-        productosEnCarrito.length
+        productosEnCarrito.reduce((total, producto) => total + producto.cantidad, 0)
     );
 };
 
