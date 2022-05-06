@@ -19,7 +19,6 @@ const App = () => {
 
   const seleccionarProducto = (producto) => {
     setProductoSeleccionado(producto);
-    console.log(producto);
   };
 
   const [productosEnCarrito, setproductosEnCarrito] = useState([]);
