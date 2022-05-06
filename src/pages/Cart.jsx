@@ -7,6 +7,7 @@ import { mobile } from "../responsive";
 import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../utils/OperacionesCarrito";
 import { Link } from "react-router-dom";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
+import { useState, useEffect } from "react";
 
 const Container = styled.div``;
 
@@ -96,9 +97,10 @@ const Button = styled.button`
 `;
 
 const Cart = (props) => {
-  const {productosEnCarrito, sumarAlCarrito, restarAlCarrito, removerDelcarrito} = props;
+  const {productosEnCarrito, sumarAlCarrito, restarAlCarrito, removerDelcarrito, limpiarCarrito} = props;
   const precioTotalProductosCarrito = PrecioTotalProductosCarrito(productosEnCarrito);
   const cantidadTotalProductosCarrito = CantidadTotalProductosCarrito(productosEnCarrito);
+  const idCliente = 1;
 
   const mostrarProductosCarrito = () =>{
     const productosCarrito = [];
@@ -120,7 +122,26 @@ const Cart = (props) => {
     };
 
     return productosCarrito;
+  } 
+
+  const procesarPedido = () => { 
+    const pedidos = armarPedidos();
+    guardarPedidoApi(pedidos);
+    limpiarCarrito();
   }
+
+  const armarPedidos = () => {
+    return productosEnCarrito.reduce((pedidosAux, productoEnCarrito) =>
+      [...pedidosAux, {
+        cliente_id: idCliente, 
+        producto_id: productoEnCarrito.id, 
+        cantidad: productoEnCarrito.cantidad}], []
+    )
+  };
+
+  const guardarPedidoApi = (pedidos) => {
+    console.log(pedidos);
+  };
 
   return (
     <Container>
@@ -160,7 +181,7 @@ const Cart = (props) => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{formatoMonedaArgentina(precioTotalProductosCarrito)}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
+            <Button onClick={() => procesarPedido()}>CHECKOUT NOW</Button>
           </Summary>
         </Bottom>
       </Wrapper>
