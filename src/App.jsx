@@ -8,12 +8,14 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 
 const App = () => {
-  const [productoSeleccionado, setProductoSeleccionado] = useState(
-    { id: 0,
-      nombre: "NOMBRE DEFAULT",
-      descripcion: "DESCRIPCION DEFAULT", 
-      img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/c_lpad,h_1000,w_1000/v1651656544/app-granja/carne_x679mb.png"
-    });
+  const productoSeleccionadoDefault = { 
+    id: 0,
+    nombre: "NOMBRE DEFAULT",
+    descripcion: "DESCRIPCION DEFAULT", 
+    img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/c_lpad,h_1000,w_1000/v1651656544/app-granja/carne_x679mb.png"
+  };
+
+  const [productoSeleccionado, setProductoSeleccionado] = useState(productoSeleccionadoDefault);
 
   const seleccionarProducto = (producto) => {
     setProductoSeleccionado(producto);
