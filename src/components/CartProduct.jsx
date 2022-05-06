@@ -1,4 +1,4 @@
-import { Add, Remove } from "@material-ui/icons";
+import { Add, Remove, ClearRounded } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
@@ -64,6 +64,13 @@ const ProductPrice = styled.div`
   ${mobile({ marginBottom: "20px" })}
 `;
 
+const Actions = styled.div`
+  display: flex;
+  align-items: top;
+  padding-top: 10px;
+  padding-right: 10px;
+`;
+
 const CartProduct = (props) => {
     const {producto, sumarAlCarrito, restarAlCarrito} = props;
     return (
@@ -91,6 +98,9 @@ const CartProduct = (props) => {
           </ProductAmountContainer>
           <ProductPrice>{formatoMonedaArgentina(producto.precioPorUnidad)}</ProductPrice>
         </PriceDetail>
+        <Actions>
+          <ClearRounded style={{cursor: "pointer", fontSize: "40px"}}/>
+        </Actions>
         </Product>
     );
   };
