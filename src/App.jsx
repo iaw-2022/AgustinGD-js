@@ -5,7 +5,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const App = () => {
   const productoSeleccionadoDefault = { 
@@ -21,7 +21,15 @@ const App = () => {
     setProductoSeleccionado(producto);
   };
 
-  const [productosEnCarrito, setproductosEnCarrito] = useState([]);
+  const [productosEnCarrito, setproductosEnCarrito] = useState(() => {
+    const localData = localStorage.getItem('productosEnCarrito');
+    return localData ? JSON.parse(localData) : [];
+  });
+
+  useEffect(()=> {
+    localStorage.setItem('productosEnCarrito', JSON.stringify(productosEnCarrito))
+  }, [productosEnCarrito]);
+  
 
   const sumarAlCarrito = (producto) => {
     const existe = productosEnCarrito.find((x) => x.id === producto.id);
