@@ -1,4 +1,4 @@
-import { Badge } from "@material-ui/core";
+import { Badge, Tooltip } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import React from "react";
 import styled from "styled-components";
@@ -102,12 +102,13 @@ const Navbar = (props) => {
           <MenuItem>REGISTRATE</MenuItem>
           <MenuItem>INGRESÁ</MenuItem>
           <MenuItem>
-            <Price>$ {precioTotalProductosCarrito}</Price>
-            <Badge badgeContent={cantidadTotalProductosCarrito} color="primary">              
-              <Link to="/cart">
-                <ShoppingCartOutlined style={{ color: "black"}}/>
-              </Link>
-            </Badge>
+            <Tooltip title={"$ " + precioTotalProductosCarrito}>
+              <Badge badgeContent={cantidadTotalProductosCarrito} color="primary">              
+                <Link to="/cart">
+                  <ShoppingCartOutlined style={{ color: "black"}}/>
+                </Link>
+              </Badge>
+            </Tooltip>            
           </MenuItem>
         </Right>
       </Wrapper>
