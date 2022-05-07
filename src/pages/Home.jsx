@@ -12,11 +12,16 @@ const Home = (props) => {
   
   return (
     <div>      
-      <Navbar productosEnCarrito={productosEnCarrito}/>
+      <Navbar 
+        productosEnCarrito={productosEnCarrito}
+      />
       <Announcement/>
       <Slider/>
       <Categories/>
-      <Products seleccionarProducto={seleccionarProducto} sumarAlCarrito={sumarAlCarrito}/>
+      <Products 
+        seleccionarProducto={seleccionarProducto} 
+        sumarAlCarrito={sumarAlCarrito}
+      />
       <Newsletter/>
       <Footer/>
     </div>

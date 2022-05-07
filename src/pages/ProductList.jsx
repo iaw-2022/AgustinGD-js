@@ -101,7 +101,10 @@ const ProductList = (props) => {
           </Select>
         </Filter>
       </FilterContainer>
-      <Products seleccionarProducto={seleccionarProducto} sumarAlCarrito={sumarAlCarrito}/>
+      <Products 
+        seleccionarProducto={seleccionarProducto} 
+        sumarAlCarrito={sumarAlCarrito}
+      />
       <Newsletter />
       <Footer />
     </Container>
