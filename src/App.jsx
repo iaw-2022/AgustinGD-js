@@ -6,6 +6,7 @@ import Login from "./pages/Login";
 import Cart from "./pages/Cart";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+import CategoryList from "./pages/CategoryList";
 
 const App = () => {
   const productoSeleccionadoDefault = { 
@@ -101,6 +102,9 @@ const App = () => {
           productosEnCarrito={productosEnCarrito} 
           seleccionarProducto={seleccionarProducto} 
           sumarAlCarrito={sumarAlCarrito}
+        />} />
+        <Route path="/categoryList" element={<CategoryList 
+          productosEnCarrito={productosEnCarrito} 
         />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
