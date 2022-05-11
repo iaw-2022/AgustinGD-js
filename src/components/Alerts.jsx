@@ -1,6 +1,6 @@
 import { ToastContainer, toast, Flip} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { ShoppingCartOutlined } from "@material-ui/icons";
+import { ShoppingCartRounded } from "@material-ui/icons";
 import styled from "styled-components";
 
 
@@ -9,7 +9,7 @@ const StyledToastContainer = styled(ToastContainer).attrs({
     toastClassName: 'toast',
     bodyClassName: 'body',
     progressClassName: 'progress',
-  })`
+})`
     /* .toast-container */
     
   
@@ -26,8 +26,11 @@ const StyledToastContainer = styled(ToastContainer).attrs({
     .body {}
   
     /* .progress is passed to progressClassName */
-    .progress {}
-  `;
+    .progress {
+        color: #F6AE2D;
+        background-color: #F6AE2D;
+    }
+`;
 
 export const Alerta = () =>{
     return (
@@ -60,7 +63,7 @@ export const mostrarAlertaExito = (mensaje) =>{
 
 export const mostrarAlertaCarrito = (mensaje) =>{
 
-    toast( mensaje, {
+    toast.success( mensaje, {
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -68,6 +71,6 @@ export const mostrarAlertaCarrito = (mensaje) =>{
         pauseOnHover: false,
         draggable: true,
         progress: undefined,
-        icon: <ShoppingCartOutlined/>,
+        icon: <ShoppingCartRounded style={{color:"#F6AE2D"}}/>,
     });
 }
