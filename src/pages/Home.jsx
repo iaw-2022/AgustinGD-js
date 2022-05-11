@@ -6,15 +6,17 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
 import Slider from "./../components/Slider";
+import { Alerta } from "../components/Alerts";
 
 const Home = (props) => {
   const {productosEnCarrito, seleccionarProducto, sumarAlCarrito} = props;
   
   return (
-    <div>      
+    <div>
+      <Alerta/>      
       <Navbar 
         productosEnCarrito={productosEnCarrito}
-      />
+      />      
       <Announcement/>
       <Slider/>
       <Categories/>

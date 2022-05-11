@@ -6,6 +6,7 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
 import { Link } from "react-router-dom";
+import { Alerta } from "../components/Alerts";
 
 const Container = styled.div``;
 
@@ -59,6 +60,7 @@ const ProductList = (props) => {
 
   return (
     <Container>
+      <Alerta/> 
       <Navbar productosEnCarrito={productosEnCarrito}/>
       <Announcement />
       <Top>

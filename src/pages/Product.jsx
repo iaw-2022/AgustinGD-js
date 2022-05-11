@@ -8,6 +8,7 @@ import { mobile } from "../responsive";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
+import { Alerta } from "../components/Alerts";
 
 const Container = styled.div``;
 
@@ -148,6 +149,7 @@ const Product = (props) => {
 
   return (
     <Container>
+      <Alerta/> 
       <Navbar productosEnCarrito={productosEnCarrito}/>
       <Announcement />
       <Top>       
