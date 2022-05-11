@@ -1,10 +1,39 @@
-import { ToastContainer, toast, zoom, bounce} from "react-toastify";
+import { ToastContainer, toast, Flip} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ShoppingCartOutlined } from "@material-ui/icons";
+import styled from "styled-components";
+
+
+const StyledToastContainer = styled(ToastContainer).attrs({
+    className: 'toast-container',
+    toastClassName: 'toast',
+    bodyClassName: 'body',
+    progressClassName: 'progress',
+  })`
+    /* .toast-container */
+    
+  
+     /* .toast is passed to toastClassName */
+    .toast {
+        color: black;
+    }
+  
+    button[aria-label="close"] {
+      
+    }
+  
+    /* .body is passed to bodyClassName */
+    .body {}
+  
+    /* .progress is passed to progressClassName */
+    .progress {}
+  `;
 
 export const Alerta = () =>{
     return (
-        <ToastContainer
+        <StyledToastContainer
             position="top-center"
+            transition={Flip}
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
@@ -12,19 +41,33 @@ export const Alerta = () =>{
             rtl={false}
             pauseOnFocusLoss
             draggable
-            pauseOnHover
+            pauseOnHover={false}
         />
     )
 }
 
 export const mostrarAlertaExito = (mensaje) =>{
-    toast.success( mensaje, {
-      position: "top-center",
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      }); 
+    toast( mensaje, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+    });
+}
+
+export const mostrarAlertaCarrito = (mensaje) =>{
+
+    toast( mensaje, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        icon: <ShoppingCartOutlined/>,
+    });
 }

@@ -7,7 +7,7 @@ import Cart from "./pages/Cart";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CategoryList from "./pages/CategoryList";
-import { mostrarAlertaExito } from "./components/Alerts";
+import { mostrarAlertaCarrito } from "./components/Alerts";
 
 const App = () => {
   const productoSeleccionadoDefault = { 
@@ -54,7 +54,7 @@ const App = () => {
       setproductosEnCarrito([...productosEnCarrito, { ...producto, cantidad: cantidadASumar }]);         
     }
     
-    mostrarAlertaExito(`Se Añadio Al carrito:\n ${producto.nombre} x ${cantidadASumar}`);
+    mostrarAlertaCarrito(`${producto.nombre} x ${cantidadASumar}`);
   };
 
   const restarAlCarrito = (producto) => {
