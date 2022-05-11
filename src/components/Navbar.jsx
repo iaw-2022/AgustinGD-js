@@ -9,7 +9,7 @@ import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 
 const Container = styled.div`
   height: 60px;
-  background: #F0F8FF;
+  background: white;
   position: fixed;  
   width: 100%;
   overflow: hidden;
@@ -74,6 +74,13 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 
+const StyledBadge = styled(Badge)({
+  "& .MuiBadge-badge": {
+    color: "black",
+    backgroundColor: "#F6AE2D"
+  }
+});
+
 const Navbar = (props) => {
   const {productosEnCarrito} = props;
   const precioTotalProductosCarrito = PrecioTotalProductosCarrito(productosEnCarrito);
@@ -97,11 +104,11 @@ const Navbar = (props) => {
           <MenuItem>INGRESÁ</MenuItem>
           <MenuItem>
             <Tooltip title={formatoMonedaArgentina(precioTotalProductosCarrito)}>
-              <Badge badgeContent={cantidadTotalProductosCarrito} color="primary">              
+              <StyledBadge badgeContent={cantidadTotalProductosCarrito}>              
                 <Link to="/cart">
                   <ShoppingCartOutlined style={{ color: "black"}}/>
                 </Link>
-              </Badge>
+              </StyledBadge>
             </Tooltip>            
           </MenuItem>
         </Right>

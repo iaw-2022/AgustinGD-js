@@ -30,7 +30,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f5fbfd;
+  background-color: #33658A;
   position: relative;
 
   &:hover ${Info}{
@@ -84,7 +84,7 @@ const Product = (props) => {
           </Icon>
         </Link>        
         <Icon>
-          <FavoriteBorderOutlined />
+          <FavoriteBorderOutlined style={{ color: "black"}}/>
         </Icon>
       </Info>
     </Container>

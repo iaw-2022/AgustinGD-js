@@ -30,15 +30,15 @@ const Info = styled.div`
 `;
 
 const Title = styled.h1`
-    color:white;
+    color: white;
     margin-bottom: 20px;
 `;
 
 const Button = styled.button`
-    border:none;
+    border-color: #F6AE2D;
     padding: 10px;
-    background-color: white;
-    color:black;
+    background-color: #F6AE2D;
+    color: black;
     cursor: pointer;
     font-weight: 600;
 `;

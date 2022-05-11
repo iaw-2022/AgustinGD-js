@@ -4,21 +4,21 @@ export const sliderItems = [
       img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/c_fill,h_1000,q_100,w_1000,x_0,y_0/v1651655954/app-granja/frutas_invierno_hyllkv.png",
       title: "FRUTAS DE TEMPORADA",
       desc: "¿PRODUCTOS FRESCOS? ¿DESCUENTOS DEL 30%? ¿DISPONIBILIDAD? ¿VARIEDAD?  ¡LO TENEMOS TODO!",
-      bg: "fcf1ed",
+      bg: "EEF9FF",
     },
     {
       id: 3,
       img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/c_lpad,h_1000,w_1000/v1651656544/app-granja/carne_x679mb.png",
       title: "AMOR A LA CARNE",
       desc: "¿PRODUCTOS FRESCOS? ¿DESCUENTOS DEL 30%? ¿DISPONIBILIDAD? ¿VARIEDAD?  ¡LO TENEMOS TODO!",      
-      bg: "f5fafd",
+      bg: "DEF4FF",
     },    
     {
       id: 2,
       img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/c_lpad,h_1000,w_1000/v1651654451/app-granja/huevos_atbcco.png",
       title: "OFERTAS DE INVIERNO",
       desc: "¿PRODUCTOS FRESCOS? ¿DESCUENTOS DEL 30%? ¿DISPONIBILIDAD? ¿VARIEDAD?  ¡LO TENEMOS TODO!",
-      bg: "fbf0f4",
+      bg: "E5EEF3",
     },
   ];
 
