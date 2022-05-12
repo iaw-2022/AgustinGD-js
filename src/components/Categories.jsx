@@ -19,7 +19,7 @@ const Categories = (props) => {
       {allCategories.filter((val) => {
         if(terminoBusqueda == ""){
           return val
-        } else if (val.title.toLowerCase().includes(terminoBusqueda.toLowerCase())) {
+        } else if (val.nombre.toLowerCase().includes(terminoBusqueda.toLowerCase())) {
           return val
         }
       }).map((categoria) => (
