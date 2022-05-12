@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  ${mobile({ padding: "10px 0px" })}
+  ${mobile({ padding: "10px 10px" })}
 `;
 
 const Left = styled.div`
@@ -46,20 +46,20 @@ const Right = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  ${mobile({ flex: 2, justifyContent: "center" })}
 `;
 
 const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
-  ${mobile({ fontSize: "12px", marginLeft: "10px" })}
+  ${mobile({ fontSize: "12px", marginLeft: "5px" })}
 `;
 
 const StyledBadge = styled(Badge)({
   "& .MuiBadge-badge": {
     color: "black",
-    backgroundColor: "#F6AE2D"
+    backgroundColor: "#F6AE2D",
+    margin: "0px 10px"
   }
 });
 
@@ -73,7 +73,7 @@ const Navbar = (props) => {
       <Wrapper>
         <Left>
           <Link to="/categoryList" style={{ textDecoration: "none"}}>
-            <MenuItem style={{ color: "black"}}> CATEGORIAS </MenuItem>
+            <MenuItem style={{ color: "black", margin: "0px"}}> CATEGORIAS </MenuItem>
           </Link>
         </Left>
         <Center>
@@ -81,11 +81,11 @@ const Navbar = (props) => {
         </Center>
         <Right>
           <SeccionAutenticacion/>
-          <MenuItem>
+          <MenuItem style={{ color: "black", marginLeft: "10px"}}>
             <Tooltip title={formatoMonedaArgentina(precioTotalProductosCarrito)}>
               <StyledBadge badgeContent={cantidadTotalProductosCarrito}>              
                 <Link to="/cart">
-                  <ShoppingCartOutlined style={{ color: "black"}}/>
+                  <ShoppingCartOutlined style={{ color: "black", margin: "0px 10px"}}/>
                 </Link>
               </StyledBadge>
             </Tooltip>            
