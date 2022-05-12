@@ -26,17 +26,17 @@ export const sliderItems = [
     {
       id: 1,
       img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "SHIRT STYLE!",
+      nombre: "SHIRT STYLE!",
     },
     {
       id: 2,
       img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "LOUNGEWEAR LOVE",
+      nombre: "LOUNGEWEAR LOVE",
     },
     {
       id: 3,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "LIGHT JACKETS",
+      nombre: "LIGHT JACKETS",
     },
   ];
 
@@ -44,62 +44,62 @@ export const sliderItems = [
     {
       id: 1,
       img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "STAR FOLD",
+      nombre: "STAR FOLD",
     },
     {
       id: 2,
       img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      title: "OFFICIAL CORNER",
+      nombre: "OFFICIAL CORNER",
     },
     {
       id: 3,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "DETERIORATE HARBOR",
+      nombre: "DETERIORATE HARBOR",
     },
     {
       id: 4,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "LISTEN TIE",
+      nombre: "LISTEN TIE",
     },
     {
       id: 5,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "CONGRESS ASSESSMENT",
+      nombre: "CONGRESS ASSESSMENT",
     },
     {
       id: 6,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "ARM SOUR",
+      nombre: "ARM SOUR",
     },
     {
       id: 7,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "EVOKE CONSIDER",
+      nombre: "EVOKE CONSIDER",
     },
     {
       id: 8,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "DEVOTE AID",
+      nombre: "DEVOTE AID",
     },
     {
       id: 9,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "CONCEIVE MINORITY",
+      nombre: "CONCEIVE MINORITY",
     },
     {
       id: 10,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "SNAP MOBILE",
+      nombre: "SNAP MOBILE",
     },
     {
       id: 11,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "WALL BASE",
+      nombre: "WALL BASE",
     },
     {
       id: 12,
       img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      title: "CASUALTY FLOOR",
+      nombre: "CASUALTY FLOOR",
     },    
   ];
 

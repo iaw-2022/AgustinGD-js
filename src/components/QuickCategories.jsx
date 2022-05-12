@@ -14,8 +14,8 @@ const Container = styled.div`
 const QuickCategories = () => {
   return (
     <Container>
-      {categories.map((item) => (
-        <QuickCategoryItem item={item} key={item.id} />
+      {categories.map((categoria) => (
+        <QuickCategoryItem categoria={categoria} key={categoria.id} />
       ))}
     </Container>
   );

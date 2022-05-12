@@ -43,12 +43,13 @@ const Button = styled.button`
     font-weight: 600;
 `;
 
-const QuickCategoryItem = ({ item }) => {
+const QuickCategoryItem = (props) => {
+  const { categoria } = props
   return (
     <Container>
-      <Image src={item.img} />
+      <Image src={categoria.img} />
       <Info>
-        <Title>{item.title}</Title>
+        <Title>{categoria.nombre}</Title>
         <Link to="/productlist">
           <Button>COMPRAR AHORA</Button>
         </Link>        

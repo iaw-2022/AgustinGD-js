@@ -23,8 +23,8 @@ const Categories = (props) => {
         } else if (val.title.toLowerCase().includes(terminoBusqueda.toLowerCase())) {
           return val
         }
-      }).map((item) => (
-        <CategoryItem item={item} key={item.id} />
+      }).map((categoria) => (
+        <CategoryItem categoria={categoria} key={categoria.id} />
       ))}
     </Container>
   );
