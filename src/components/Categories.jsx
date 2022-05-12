@@ -17,7 +17,6 @@ const Categories = (props) => {
   return (
     <Container>
       {allCategories.filter((val) => {
-        console.log(val);
         if(terminoBusqueda == ""){
           return val
         } else if (val.title.toLowerCase().includes(terminoBusqueda.toLowerCase())) {
