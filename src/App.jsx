@@ -8,6 +8,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CategoryList from "./pages/CategoryList";
 import { mostrarAlertaCarrito } from "./components/Alerts";
+import OrderList from "./pages/OrderList"
 
 const App = () => {
   const productoSeleccionadoDefault = { 
@@ -107,6 +108,9 @@ const App = () => {
           sumarAlCarrito={sumarAlCarrito}
         />} />
         <Route path="/categoryList" element={<CategoryList 
+          productosEnCarrito={productosEnCarrito} 
+        />} />
+        <Route path="/orderList" element={<OrderList 
           productosEnCarrito={productosEnCarrito} 
         />} />
         <Route path="/register" element={<Register />} />
