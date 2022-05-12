@@ -29,12 +29,18 @@ const Input = styled.input`
     ${mobile({ width: "50px" })}
 `;
 
-const SearchBar = () => {    
+const SearchBar = (props) => {
+    const { setTerminoBusqueda } = props    
     return (
         <Container>
             <Language>ES </Language>
             <SearchContainer>
-            <Input placeholder="Buscar" />
+            <Input
+                placeholder="Buscar"
+                onChange={(event) => {
+                    setTerminoBusqueda(event.target.value);
+                }}
+            />
             <Search style={{ color: "gray", fontSize: 16 }} />
             </SearchContainer>
         </Container>

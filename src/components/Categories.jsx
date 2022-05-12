@@ -11,10 +11,19 @@ const Container = styled.div`
   ${mobile({ padding: "0px", flexDirection:"column" })}
 `;
 
-const Categories = () => {
+const Categories = (props) => {
+  const { terminoBusqueda } = props
+  
   return (
     <Container>
-      {allCategories.map((item) => (
+      {allCategories.filter((val) => {
+        console.log(val);
+        if(terminoBusqueda == ""){
+          return val
+        } else if (val.title.toLowerCase().includes(terminoBusqueda.toLowerCase())) {
+          return val
+        }
+      }).map((item) => (
         <CategoryItem item={item} key={item.id} />
       ))}
     </Container>

@@ -7,6 +7,7 @@ import { mobile } from "../responsive";
 import { Link } from "react-router-dom";
 import Categories from "../components/Categories"
 import SearchBar from "./../components/SearchBar"
+import { useState, useEffect } from "react";
 
 const Container = styled.div``;
 
@@ -33,19 +34,20 @@ const Header = styled.h1`
 
 const ProductList = (props) => {
   const { productosEnCarrito } = props;
+  const [terminoBusqueda, setTerminoBusqueda] = useState("");
 
   return (
     <Container>
       <Navbar productosEnCarrito={productosEnCarrito}/>
       <Announcement />
       <Top>
-        <SearchBar/>
+        <SearchBar setTerminoBusqueda={setTerminoBusqueda} />
         <Header>Comprar por Categoria</Header>
         <Link to="/">        
           <TopButton >CONTINUE SHOPPING</TopButton>
         </Link>
       </Top>
-      <Categories />
+      <Categories terminoBusqueda={terminoBusqueda} />
       <Newsletter />
       <Footer />
     </Container>
