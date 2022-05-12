@@ -11,22 +11,22 @@ const Container = styled.div`
 `;
 
 const Language = styled.span`
-font-size: 14px;
-cursor: pointer;
-${mobile({ display: "none" })}
+    font-size: 14px;
+    cursor: pointer;
+    ${mobile({ display: "none" })}
 `;
 
 const SearchContainer = styled.div`
-border: 0.5px solid lightgray;
-display: flex;
-align-items: center;
-margin-left: 25px;
-padding: 5px;
+    border: 0.5px solid lightgray;
+    display: flex;
+    align-items: center;
+    margin-left: 25px;
+    padding: 5px;
 `;
 
 const Input = styled.input`
-border: none;
-${mobile({ width: "50px" })}
+    border: none;
+    ${mobile({ width: "50px" })}
 `;
 
 const SearchBar = () => {    
