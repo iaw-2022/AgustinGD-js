@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { allCategories } from "../data";
 import { mobile } from "../responsive";
 import CategoryItem from "./CategoryItem";
+import { filtrarNombre } from "../utils/FiltrarJson";
 
 const Container = styled.div`
   padding: 20px;
@@ -14,15 +15,11 @@ const Container = styled.div`
 const Categories = (props) => {
   const { terminoBusqueda } = props
   
+  const categoriasFiltradas = filtrarNombre(allCategories, terminoBusqueda);
+
   return (
     <Container>
-      {allCategories.filter((val) => {
-        if(terminoBusqueda == ""){
-          return val
-        } else if (val.nombre.toLowerCase().includes(terminoBusqueda.toLowerCase())) {
-          return val
-        }
-      }).map((categoria) => (
+      {categoriasFiltradas.map((categoria) => (
         <CategoryItem categoria={categoria} key={categoria.id} />
       ))}
     </Container>
