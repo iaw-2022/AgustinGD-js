@@ -11,11 +11,17 @@ const Container = styled.div`
 
 `;
 
-const QuickCategories = () => {
+const QuickCategories = (props) => {
+  const { setCategoriaSeleccionada } = props
+
   return (
     <Container>
       {categories.map((categoria) => (
-        <QuickCategoryItem categoria={categoria} key={categoria.id} />
+        <QuickCategoryItem 
+          categoria={categoria} 
+          key={categoria.id} 
+          setCategoriaSeleccionada={setCategoriaSeleccionada}
+          />
       ))}
     </Container>
   );

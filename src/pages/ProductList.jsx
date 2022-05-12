@@ -56,7 +56,7 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const ProductList = (props) => {
-  const {productosEnCarrito, seleccionarProducto, sumarAlCarrito} = props;
+  const {productosEnCarrito, seleccionarProducto, sumarAlCarrito, categoriaSeleccionada} = props;
 
   return (
     <Container>
@@ -64,7 +64,7 @@ const ProductList = (props) => {
       <Navbar productosEnCarrito={productosEnCarrito}/>
       <Announcement />
       <Top>
-        <Title>Dresses</Title>        
+        <Title>{categoriaSeleccionada.nombre}</Title>        
         <Link to="/">
           <TopButton>CONTINUE SHOPPING</TopButton>
         </Link>

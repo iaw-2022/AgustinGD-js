@@ -18,6 +18,14 @@ const App = () => {
     img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/c_lpad,h_1000,w_1000/v1651656544/app-granja/carne_x679mb.png"
   };
 
+  const categoriaSeleccionadaDefault = { 
+    id: 0,
+    nombre: "CATEGORIA DEFAULT", 
+    img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/c_lpad,h_1000,w_1000/v1651656544/app-granja/carne_x679mb.png"
+  };
+
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(categoriaSeleccionadaDefault);
+
   const [productoSeleccionado, setProductoSeleccionado] = useState(() => {
     const localData = localStorage.getItem('productoSeleccionado');
     return localData ? JSON.parse(localData) : productoSeleccionadoDefault;
@@ -40,7 +48,6 @@ const App = () => {
     localStorage.setItem('productosEnCarrito', JSON.stringify(productosEnCarrito))
   }, [productosEnCarrito]);
   
-
   const sumarAlCarrito = (producto, cantidadElegida) => {
     const cantidadASumar = cantidadElegida ? cantidadElegida : 1;
     const existe = productosEnCarrito.find((x) => x.id === producto.id);
@@ -88,7 +95,8 @@ const App = () => {
         <Route path="/" element={<Home 
             productosEnCarrito={productosEnCarrito} 
             seleccionarProducto={seleccionarProducto} 
-            sumarAlCarrito={sumarAlCarrito} 
+            sumarAlCarrito={sumarAlCarrito}
+            setCategoriaSeleccionada={setCategoriaSeleccionada}
         />} />
         <Route path="/cart" element={<Cart 
             productosEnCarrito={productosEnCarrito} 
@@ -106,9 +114,11 @@ const App = () => {
           productosEnCarrito={productosEnCarrito} 
           seleccionarProducto={seleccionarProducto} 
           sumarAlCarrito={sumarAlCarrito}
+          categoriaSeleccionada={categoriaSeleccionada}
         />} />
         <Route path="/categoryList" element={<CategoryList 
-          productosEnCarrito={productosEnCarrito} 
+          productosEnCarrito={productosEnCarrito}
+          setCategoriaSeleccionada={setCategoriaSeleccionada} 
         />} />
         <Route path="/orderList" element={<OrderList 
           productosEnCarrito={productosEnCarrito} 

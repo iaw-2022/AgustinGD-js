@@ -56,7 +56,7 @@ const FilterText = styled.span`
 `;
 
 const ProductList = (props) => {
-  const { productosEnCarrito } = props;
+  const { productosEnCarrito, setCategoriaSeleccionada } = props;
   const [terminoBusqueda, setTerminoBusqueda] = useState("");
   const [orden, setOrden] = useState("");
 
@@ -85,7 +85,8 @@ const ProductList = (props) => {
       </FilterContainer>
       <Categories 
         terminoBusqueda={terminoBusqueda}
-        orden={orden} 
+        orden={orden}
+        setCategoriaSeleccionada={setCategoriaSeleccionada} 
       />
       <Newsletter />
       <Footer />

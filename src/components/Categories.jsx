@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 
 const Categories = (props) => {
-  const { terminoBusqueda, orden } = props
+  const { terminoBusqueda, orden, setCategoriaSeleccionada } = props
   
   const categoriasFiltradas = filtrarNombre(allCategories, terminoBusqueda);
   ordenar(categoriasFiltradas, orden);
@@ -22,7 +22,11 @@ const Categories = (props) => {
   return (
     <Container>
       {categoriasFiltradas.map((categoria) => (
-        <CategoryItem categoria={categoria} key={categoria.id} />
+        <CategoryItem 
+          categoria={categoria}
+          key={categoria.id}
+          setCategoriaSeleccionada={setCategoriaSeleccionada}
+        />
       ))}
     </Container>
   );
