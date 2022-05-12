@@ -43,7 +43,7 @@ const Button = styled.button`
     font-weight: 600;
 `;
 
-const CategoryItem = ({ item }) => {
+const QuickCategoryItem = ({ item }) => {
   return (
     <Container>
       <Image src={item.img} />
@@ -57,4 +57,4 @@ const CategoryItem = ({ item }) => {
   );
 };
 
-export default CategoryItem;
+export default QuickCategoryItem;

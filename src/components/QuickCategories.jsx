@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { categories } from "../data";
 import { mobile } from "../responsive";
-import CategoryItem from "./CategoryItem";
+import QuickCategoryItem from "./QuickCategoryItem";
 
 const Container = styled.div`
   display: flex;
@@ -11,14 +11,14 @@ const Container = styled.div`
 
 `;
 
-const Categories = () => {
+const QuickCategories = () => {
   return (
     <Container>
       {categories.map((item) => (
-        <CategoryItem item={item} key={item.id} />
+        <QuickCategoryItem item={item} key={item.id} />
       ))}
     </Container>
   );
 };
 
-export default Categories;
+export default QuickCategories;
