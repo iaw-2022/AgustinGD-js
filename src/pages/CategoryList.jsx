@@ -7,7 +7,9 @@ import { mobile } from "../responsive";
 import { Link } from "react-router-dom";
 import Categories from "../components/Categories"
 import SearchBar from "./../components/SearchBar"
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import SelectOption from "../components/SelectOption";
+import { opcionesNombre } from "./../utils/OrdenarJson"
 
 const Container = styled.div``;
 
@@ -56,6 +58,7 @@ const FilterText = styled.span`
 const ProductList = (props) => {
   const { productosEnCarrito } = props;
   const [terminoBusqueda, setTerminoBusqueda] = useState("");
+  const [orden, setOrden] = useState("");
 
   return (
     <Container>
@@ -71,9 +74,19 @@ const ProductList = (props) => {
         <Filter>
           <FilterText>Filtrar Categorias:</FilterText>
           <SearchBar setTerminoBusqueda={setTerminoBusqueda} />
+        </Filter>
+        <Filter>
+          <FilterText>Ordenar Categorias:</FilterText>
+          <SelectOption 
+            opciones={opcionesNombre}
+            setOrden={setOrden}
+          />         
         </Filter>       
       </FilterContainer>
-      <Categories terminoBusqueda={terminoBusqueda} />
+      <Categories 
+        terminoBusqueda={terminoBusqueda}
+        orden={orden} 
+      />
       <Newsletter />
       <Footer />
     </Container>
