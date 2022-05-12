@@ -6,6 +6,7 @@ import { mobile } from "../responsive";
 import { Link } from "react-router-dom";
 import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../utils/OperacionesCarrito";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
+import SeccionAutenticacion from "./SeccionAutenticacion";
 
 const Container = styled.div`
   height: 60px;
@@ -100,8 +101,7 @@ const Navbar = (props) => {
           <Logo>LAMA.</Logo>
         </Center>
         <Right>
-          <MenuItem>REGISTRATE</MenuItem>
-          <MenuItem>INGRESÁ</MenuItem>
+          <SeccionAutenticacion/>
           <MenuItem>
             <Tooltip title={formatoMonedaArgentina(precioTotalProductosCarrito)}>
               <StyledBadge badgeContent={cantidadTotalProductosCarrito}>              
