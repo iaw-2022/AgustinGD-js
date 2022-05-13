@@ -49,6 +49,7 @@ const BrandLogo = styled.img`
 const BrandName = styled.h1`
   font-weight: bold;
   margin-left: 5px;
+  color: black;
   ${mobile({ fontSize: "24px" })}
 `;
 
@@ -87,14 +88,16 @@ const Navbar = (props) => {
             <MenuItem style={{ color: "black", margin: "0px"}}> CATEGORIAS </MenuItem>
           </Link>
         </Left>
-        <Center>
-          <BrandLogo 
-            src={window.location.origin + "/logoMei.png"}
-            alt={"Logo de la vaca Mei."}
-            title={"La vaca Mei."}
-          />
-          <BrandName>MEI!</BrandName>
-        </Center>
+        <Link to="/" style={{ textDecoration: "none"}}>
+          <Center>          
+              <BrandLogo 
+                src={window.location.origin + "/logoMei.png"}
+                alt={"Logo de la vaca Mei."}
+                title={"La vaca Mei."}
+              />
+              <BrandName>MEI!</BrandName>                    
+          </Center>
+        </Link>
         <Right>
           <SeccionAutenticacion/>
           <MenuItem style={{ color: "black", marginLeft: "10px"}}>
