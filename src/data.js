@@ -1,8 +1,8 @@
 export const sliderItems = [
     {
       id: 1,
-      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/c_fill,h_1000,q_100,w_1000,x_0,y_0/v1651655954/app-granja/frutas_invierno_hyllkv.png",
-      title: "FRUTAS DE TEMPORADA",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/c_fill,h_1000,q_100,w_1000/v1652457152/app-granja/cara-de-vaca_tkf3xe.png",
+      title: "LACTEOS PARA DELEITARSE",
       desc: "¿PRODUCTOS FRESCOS? ¿DESCUENTOS DEL 30%? ¿DISPONIBILIDAD? ¿VARIEDAD?  ¡LO TENEMOS TODO!",
       bg: "EEF9FF",
     },
