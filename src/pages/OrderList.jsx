@@ -20,7 +20,6 @@ const OrderList = (props) => {
                     productosEnCarrito={productosEnCarrito}
                 />      
                 <Announcement/>
-                <Newsletter/>
                 <Footer/>
             </div>            
         ) : (
