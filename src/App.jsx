@@ -10,20 +10,9 @@ import CategoryList from "./pages/CategoryList";
 import { mostrarAlertaCarrito } from "./components/Alerts";
 import OrderList from "./pages/OrderList"
 import ScrollToTop from "./utils/ScrollToTop";
+import { productoSeleccionadoDefault, categoriaSeleccionadaDefault } from "./utils/DefaultData";
 
 const App = () => {
-  const productoSeleccionadoDefault = { 
-    id: 0,
-    nombre: "NOMBRE DEFAULT",
-    descripcion: "DESCRIPCION DEFAULT", 
-    img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/c_lpad,h_1000,w_1000/v1651656544/app-granja/carne_x679mb.png"
-  };
-
-  const categoriaSeleccionadaDefault = { 
-    id: 0,
-    nombre: "CATEGORIA DEFAULT", 
-    img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/c_lpad,h_1000,w_1000/v1651656544/app-granja/carne_x679mb.png"
-  };
 
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(categoriaSeleccionadaDefault);
 
@@ -35,10 +24,6 @@ const App = () => {
   useEffect(()=> {
     localStorage.setItem('productoSeleccionado', JSON.stringify(productoSeleccionado))
   }, [productoSeleccionado]);
-
-  const seleccionarProducto = (producto) => {
-    setProductoSeleccionado(producto);
-  };
 
   const [productosEnCarrito, setproductosEnCarrito] = useState(() => {
     const localData = localStorage.getItem('productosEnCarrito');
@@ -96,7 +81,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home 
             productosEnCarrito={productosEnCarrito} 
-            seleccionarProducto={seleccionarProducto} 
+            setProductoSeleccionado={setProductoSeleccionado} 
             sumarAlCarrito={sumarAlCarrito}
             setCategoriaSeleccionada={setCategoriaSeleccionada}
         />} />
@@ -114,7 +99,7 @@ const App = () => {
         />} />
         <Route path="/productlist" element={<ProductList 
           productosEnCarrito={productosEnCarrito} 
-          seleccionarProducto={seleccionarProducto} 
+          setProductoSeleccionado={setProductoSeleccionado} 
           sumarAlCarrito={sumarAlCarrito}
           categoriaSeleccionada={categoriaSeleccionada}
         />} />

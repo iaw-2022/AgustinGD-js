@@ -68,7 +68,7 @@ const Icon = styled.div`
 `;
 
 const Product = (props) => {
-  const {producto, seleccionarProducto, sumarAlCarrito} = props;
+  const {producto, setProductoSeleccionado, sumarAlCarrito} = props;
   
   return (
     <Container>
@@ -78,7 +78,7 @@ const Product = (props) => {
         <Icon onClick={() => sumarAlCarrito(producto)}>
           <ShoppingCartOutlined style={{ color: "black"}}/>
         </Icon>
-        <Link onClick={() => seleccionarProducto(producto)} to="/product">
+        <Link onClick={() => setProductoSeleccionado(producto)} to="/product">
           <Icon>
             <SearchOutlined style={{ color: "black"}}/>
           </Icon>

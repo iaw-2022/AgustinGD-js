@@ -56,7 +56,7 @@ const Select = styled.select`
 const Option = styled.option``;
 
 const ProductList = (props) => {
-  const {productosEnCarrito, seleccionarProducto, sumarAlCarrito, categoriaSeleccionada} = props;
+  const {productosEnCarrito, setProductoSeleccionado, sumarAlCarrito, categoriaSeleccionada} = props;
 
   return (
     <Container>
@@ -104,7 +104,7 @@ const ProductList = (props) => {
         </Filter>
       </FilterContainer>
       <Products 
-        seleccionarProducto={seleccionarProducto} 
+        setProductoSeleccionado={setProductoSeleccionado} 
         sumarAlCarrito={sumarAlCarrito}
       />
       <Newsletter />

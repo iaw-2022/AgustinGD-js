@@ -9,7 +9,7 @@ import Slider from "./../components/Slider";
 import { Alerta } from "../components/Alerts";
 
 const Home = (props) => {
-  const {productosEnCarrito, seleccionarProducto, sumarAlCarrito, setCategoriaSeleccionada} = props;
+  const {productosEnCarrito, setProductoSeleccionado, sumarAlCarrito, setCategoriaSeleccionada} = props;
   
   return (
     <div>
@@ -21,7 +21,7 @@ const Home = (props) => {
       <Slider/>
       <QuickCategories setCategoriaSeleccionada={setCategoriaSeleccionada} />
       <Products 
-        seleccionarProducto={seleccionarProducto} 
+        setProductoSeleccionado={setProductoSeleccionado} 
         sumarAlCarrito={sumarAlCarrito}
       />
       <Newsletter/>

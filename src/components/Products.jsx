@@ -10,11 +10,11 @@ const Container = styled.div`
 `;
 
 const Products = (props) => {
-  const {seleccionarProducto, sumarAlCarrito} = props;
+  const { setProductoSeleccionado, sumarAlCarrito } = props;
   return (
     <Container>
       {popularProducts.map((producto) => (
-        <Product producto={producto} key={producto.id} seleccionarProducto={seleccionarProducto} sumarAlCarrito={sumarAlCarrito}/>
+        <Product producto={producto} key={producto.id} setProductoSeleccionado={setProductoSeleccionado} sumarAlCarrito={sumarAlCarrito} />
       ))}
     </Container>
   );
