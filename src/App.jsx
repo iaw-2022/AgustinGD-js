@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import CategoryList from "./pages/CategoryList";
 import { mostrarAlertaCarrito } from "./components/Alerts";
 import OrderList from "./pages/OrderList"
+import ScrollToTop from "./utils/ScrollToTop";
 
 const App = () => {
   const productoSeleccionadoDefault = { 
@@ -91,6 +92,7 @@ const App = () => {
    
   return (
     <Router>
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<Home 
             productosEnCarrito={productosEnCarrito} 
