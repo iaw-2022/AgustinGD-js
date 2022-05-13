@@ -2,7 +2,6 @@ import React from "react";
 import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import Newsletter from "../components/Newsletter";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Route } from 'react-router-dom'
 
