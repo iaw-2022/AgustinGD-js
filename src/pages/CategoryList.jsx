@@ -4,7 +4,6 @@ import Announcement from "../components/Announcement";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
-import { Link } from "react-router-dom";
 import Categories from "../components/Categories"
 import SearchBar from "./../components/SearchBar"
 import { useState } from "react";
@@ -23,16 +22,6 @@ const Top = styled.div`
 const Title = styled.h1`
   margin: 20px;
   text-align: center;
-`;
-
-const TopButton = styled.button`
-  padding: 10px;
-  font-weight: 600;
-  cursor: pointer;
-  border: ${(props) => props.type === "filled" && "none"};
-  background-color: ${(props) =>
-    props.type === "filled" ? "black" : "transparent"};
-  color: ${(props) => props.type === "filled" && "white"};
 `;
 
 const FilterContainer = styled.div`
@@ -66,9 +55,6 @@ const ProductList = (props) => {
       <Announcement />
       <Top>        
         <Title>Comprar por Categoria</Title>
-        <Link to="/">        
-          <TopButton >CONTINUE SHOPPING</TopButton>
-        </Link>
       </Top>
       <FilterContainer>
         <Filter>

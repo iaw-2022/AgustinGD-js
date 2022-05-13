@@ -5,9 +5,7 @@ import Navbar from "../components/Navbar";
 import CartProduct from "../components/CartProduct";
 import { mobile } from "../responsive";
 import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../utils/OperacionesCarrito";
-import { Link } from "react-router-dom";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
-import { useState, useEffect } from "react";
 
 const Container = styled.div``;
 
@@ -149,10 +147,7 @@ const Cart = (props) => {
       <Announcement />
       <Wrapper>
         <Title>YOUR BAG</Title>
-        <Top>
-          <Link to="/">
-            <TopButton >CONTINUE SHOPPING</TopButton>
-          </Link>          
+        <Top>         
           <TopTexts>
             <TopText>Shopping Bag({cantidadTotalProductosCarrito})</TopText>
             <TopText>Your Wishlist (0)</TopText>
