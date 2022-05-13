@@ -161,3 +161,55 @@ export const sliderItems = [
       img:"https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
     },
   ]
+
+export const pedidos = [
+  {
+    id: 1,
+    fecha: "15 Enero",
+    producto_nombre: "Jamon",
+    cantidad: "4",
+    total: "500",
+  },
+  {
+    id: 2,
+    fecha: "16 Febrero",
+    producto_nombre: "Queso",
+    cantidad: "2",
+    total: "100",
+  },
+  {
+    id: 3,
+    fecha: "17 Marzo",
+    producto_nombre: "Carne de vaca",
+    cantidad: "2",
+    total: "1000",
+  },
+  {
+    id: 4,
+    fecha: "18 Abril",
+    producto_nombre: "Leche",
+    cantidad: "5",
+    total: "600",
+  },
+  {
+    id: 5,
+    fecha: "19 Mayo",
+    producto_nombre: "Patas de pollo",
+    cantidad: "22",
+    total: "700",
+  },
+  {
+    id: 6,
+    fecha: "20 Junio",
+    producto_nombre: "Yogurt Griego",
+    cantidad: "10000",
+    total: "69",
+  },
+  {
+    id: 7,
+    fecha: "21 Julio",
+    producto_nombre: "Manteca",
+    cantidad: "3",
+    total: "432",
+  },
+];
