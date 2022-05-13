@@ -3,7 +3,7 @@ import { mobile } from "../responsive";
 
 const Container = styled.div`
   height: 30px;
-  padding-top: 60px;
+  padding-top: 80px;
   background-color: #86BBD8;
   color: white;
   display: flex;

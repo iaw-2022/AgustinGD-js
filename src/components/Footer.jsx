@@ -22,7 +22,7 @@ const Left = styled.div`
   padding: 20px;
 `;
 
-const Logo = styled.h1``;
+const BrandName = styled.h1``;
 
 const Desc = styled.p`
   margin: 20px 0px;
@@ -88,7 +88,7 @@ const Footer = () => {
   return (
     <Container>
       <Left>
-        <Logo>LAMA.</Logo>
+        <BrandName>MEI!</BrandName>
         <Desc>
           Nuestras redes sociales.
         </Desc>

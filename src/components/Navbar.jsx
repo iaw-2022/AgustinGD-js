@@ -9,7 +9,7 @@ import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 import SeccionAutenticacion from "./SeccionAutenticacion";
 
 const Container = styled.div`
-  height: 60px;
+  height: 80px;
   background: white;
   position: fixed;  
   width: 100%;
@@ -33,14 +33,25 @@ const Left = styled.div`
 `;
 
 const Center = styled.div`
+  display: flex;
   flex: 1;
+  justify-content: center;
   text-align: center;
+  align-items: center;
 `;
 
-const Logo = styled.h1`
+const BrandLogo = styled.img`
+  width: 64px;
+  length: 64px;
+  ${mobile({ display: "none" })}
+`;
+
+const BrandName = styled.h1`
   font-weight: bold;
+  margin-left: 5px;
   ${mobile({ fontSize: "24px" })}
 `;
+
 const Right = styled.div`
   flex: 1;
   display: flex;
@@ -77,7 +88,12 @@ const Navbar = (props) => {
           </Link>
         </Left>
         <Center>
-          <Logo>LAMA.</Logo>
+          <BrandLogo 
+            src={window.location.origin + "/logoMei.png"}
+            alt={"Logo de la vaca Mei."}
+            title={"La vaca Mei."}
+          />
+          <BrandName>MEI!</BrandName>
         </Center>
         <Right>
           <SeccionAutenticacion/>
