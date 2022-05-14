@@ -6,7 +6,7 @@ export const RANDOM = "Random";
 
 export const opcionesNombre = [RANDOM, ASCENDENTE_NOMBRE, DESCENDENTE_NOMBRE];
 export const opcionesPrecio = [RANDOM, ASCENDENTE_PRECIO, DESCENDENTE_PRECIO];
-export const opcionesTodas = [RANDOM, ASCENDENTE_PRECIO, DESCENDENTE_PRECIO, ASCENDENTE_NOMBRE, DESCENDENTE_NOMBRE];
+export const opcionesProducto = [RANDOM, ASCENDENTE_PRECIO, DESCENDENTE_PRECIO, ASCENDENTE_NOMBRE, DESCENDENTE_NOMBRE];
 
 export const ordenar = (items, orden) =>{
     switch(orden) {
