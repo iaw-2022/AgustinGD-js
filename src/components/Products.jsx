@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import { popularProducts } from "../data";
+import { popularProducts as productos } from "../data";
 import Product from "./Product";
+import { filtrarNombre } from "../utils/FiltrarJson";
+import { ordenar } from "../utils/OrdenarJson";
 
 const Container = styled.div`
     padding: 20px;
@@ -10,11 +12,20 @@ const Container = styled.div`
 `;
 
 const Products = (props) => {
-  const { setProductoSeleccionado, sumarAlCarrito } = props;
+  const { setProductoSeleccionado, sumarAlCarrito, terminoBusqueda, orden } = props;
+
+  const productosFiltrados = filtrarNombre(productos, terminoBusqueda);
+  ordenar(productosFiltrados, orden);
+
   return (
     <Container>
-      {popularProducts.map((producto) => (
-        <Product producto={producto} key={producto.id} setProductoSeleccionado={setProductoSeleccionado} sumarAlCarrito={sumarAlCarrito} />
+      {productosFiltrados.map((producto) => (
+        <Product
+          producto={producto}
+          key={producto.id}
+          setProductoSeleccionado={setProductoSeleccionado}
+          sumarAlCarrito={sumarAlCarrito}
+        />
       ))}
     </Container>
   );

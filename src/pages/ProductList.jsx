@@ -6,6 +6,10 @@ import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
 import { Alerta } from "../components/Alerts";
+import { useState } from "react";
+import SearchBar from "../components/SearchBar";
+import SelectOption from "../components/SelectOption";
+import { opcionesProducto } from "../utils/OrdenarJson";
 
 const Container = styled.div``;
 
@@ -26,7 +30,10 @@ const FilterContainer = styled.div`
 `;
 
 const Filter = styled.div`
+  display: flex;
+  flex-direction: row;
   margin: 20px;
+  align-items: center;
   ${mobile({ width: "0px 20px", display: "flex", flexDirection: "column" })}
 `;
 
@@ -37,15 +44,10 @@ const FilterText = styled.span`
   ${mobile({ marginRight: "0px" })}
 `;
 
-const Select = styled.select`
-  padding: 10px;
-  margin-right: 20px;
-  ${mobile({ margin: "10px 0px" })}
-`;
-const Option = styled.option``;
-
 const ProductList = (props) => {
   const {productosEnCarrito, setProductoSeleccionado, sumarAlCarrito, categoriaSeleccionada} = props;
+  const [terminoBusqueda, setTerminoBusqueda] = useState("");
+  const [orden, setOrden] = useState("");
 
   return (
     <Container>
@@ -57,41 +59,22 @@ const ProductList = (props) => {
       </Top>      
       <FilterContainer>
         <Filter>
-          <FilterText>Filter Products:</FilterText>
-          <Select>
-            <Option disabled selected>
-              Color
-            </Option>
-            <Option>White</Option>
-            <Option>Black</Option>
-            <Option>Red</Option>
-            <Option>Blue</Option>
-            <Option>Yellow</Option>
-            <Option>Green</Option>
-          </Select>
-          <Select>
-            <Option disabled selected>
-              Size
-            </Option>
-            <Option>XS</Option>
-            <Option>S</Option>
-            <Option>M</Option>
-            <Option>L</Option>
-            <Option>XL</Option>
-          </Select>
+          <FilterText>Filtrar Categorias:</FilterText>
+          <SearchBar setTerminoBusqueda={setTerminoBusqueda} />
         </Filter>
         <Filter>
-          <FilterText>Sort Products:</FilterText>
-          <Select>
-            <Option selected>Newest</Option>
-            <Option>Price (asc)</Option>
-            <Option>Price (desc)</Option>
-          </Select>
-        </Filter>
+          <FilterText>Ordenar Categorias:</FilterText>
+          <SelectOption 
+            opciones={opcionesProducto}
+            setOrden={setOrden}
+          />         
+        </Filter>       
       </FilterContainer>
       <Products 
         setProductoSeleccionado={setProductoSeleccionado} 
         sumarAlCarrito={sumarAlCarrito}
+        terminoBusqueda={terminoBusqueda}
+        orden={orden}
       />
       <Newsletter />
       <Footer />
