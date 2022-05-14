@@ -33,6 +33,9 @@ const Input = styled.input`
     border: none;
     color: white;
     height: 28px;
+    ::placeholder{
+        color: #e8e3e3;
+    }
     ${mobile({ width: "105px" })}
 `;
 
