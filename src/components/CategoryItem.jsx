@@ -13,6 +13,7 @@ const Container = styled.div`
   justify-content: center;
   background-color: #33658A;
   position: relative;
+  box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.2);
   ${mobile({ height: "unset" })}
 `;
 

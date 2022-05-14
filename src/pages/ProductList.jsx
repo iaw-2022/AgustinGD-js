@@ -21,6 +21,7 @@ const Top = styled.div`
 `;
 
 const Title = styled.h1`
+  color: black;
   margin: 20px;
 `;
 

@@ -3,7 +3,7 @@ import Announcement from "../components/Announcement";
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import CartProduct from "../components/CartProduct";
-import { mobile } from "../responsive";
+import { tablet } from "../responsive";
 import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../utils/OperacionesCarrito";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 
@@ -11,7 +11,7 @@ const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 20px;
-  ${mobile({ padding: "10px" })}
+  ${tablet({ padding: "10px" })}
 `;
 
 const Title = styled.h1`
@@ -30,14 +30,15 @@ const TopButton = styled.button`
   padding: 10px;
   font-weight: 600;
   cursor: pointer;
-  border: ${(props) => props.type === "filled" && "none"};
-  background-color: ${(props) =>
-    props.type === "filled" ? "black" : "transparent"};
-  color: ${(props) => props.type === "filled" && "white"};
+  border: none;
+  background-color: #F6AE2D;
+  color: black;
+  display: none;
+  ${tablet({ display: "unset" })}
 `;
 
 const TopTexts = styled.div`
-  ${mobile({ display: "none" })}
+  
 `;
 const TopText = styled.span`
   text-decoration: underline;
@@ -48,7 +49,7 @@ const TopText = styled.span`
 const Bottom = styled.div`
   display: flex;
   justify-content: space-between;
-  ${mobile({ flexDirection: "column" })}
+  ${tablet({ flexDirection: "column" })}
 
 `;
 
@@ -67,7 +68,10 @@ const Summary = styled.div`
   border: 0.5px solid lightgray;
   border-radius: 10px;
   padding: 20px;
-  height: 50vh;
+  height: 310px;
+  @media only screen and (max-width: 1360px) {
+    height: 350px;
+  }
 `;
 
 const SummaryTitle = styled.h1`
@@ -87,10 +91,11 @@ const SummaryItemText = styled.span``;
 const SummaryItemPrice = styled.span``;
 
 const Button = styled.button`
+  border-color: #F6AE2D;
+  background-color: #F6AE2D;
   width: 100%;
   padding: 10px;
-  background-color: black;
-  color: white;
+  color: black;
   font-weight: 600;
 `;
 
@@ -146,20 +151,20 @@ const Cart = (props) => {
       <Navbar productosEnCarrito={productosEnCarrito}/>
       <Announcement />
       <Wrapper>
-        <Title>YOUR BAG</Title>
+        <Title>TU CARRITO DE COMPRAS</Title>
         <Top>         
           <TopTexts>
-            <TopText>Shopping Bag({cantidadTotalProductosCarrito})</TopText>
+            <TopText>Carrito de compras({cantidadTotalProductosCarrito})</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          <TopButton type="filled">COMPRAR AHORA</TopButton>
         </Top>
         <Bottom>
           <Info>
             {mostrarProductosCarrito()}
           </Info>
           <Summary>
-            <SummaryTitle>ORDER SUMMARY</SummaryTitle>
+            <SummaryTitle>RESUMEN DEL PEDIDO</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
               <SummaryItemPrice>$ 80</SummaryItemPrice>
@@ -176,7 +181,7 @@ const Cart = (props) => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{formatoMonedaArgentina(precioTotalProductosCarrito)}</SummaryItemPrice>
             </SummaryItem>
-            <Button onClick={() => procesarPedido()}>CHECKOUT NOW</Button>
+            <Button onClick={() => procesarPedido()}>COMPRAR AHORA</Button>
           </Summary>
         </Bottom>
       </Wrapper>

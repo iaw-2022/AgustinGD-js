@@ -8,6 +8,7 @@ const Container = styled.div`
   margin: 3px;
   height: 70vh;
   position: relative;
+  box-shadow: 1px 2px 2px 2px rgba(0, 0, 0, 0.2);
 `;
 
 const Image = styled.img`

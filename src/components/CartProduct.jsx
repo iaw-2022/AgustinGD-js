@@ -1,4 +1,4 @@
-import { Add, Remove, ClearRounded } from "@material-ui/icons";
+import { Add, Remove, DeleteOutline } from "@material-ui/icons";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
@@ -19,6 +19,7 @@ const Image = styled.img`
 `;
 
 const Details = styled.div`
+  color: black;
   padding: 20px;
   display: flex;
   flex-direction: column;
@@ -26,6 +27,10 @@ const Details = styled.div`
 `;
 
 const ProductName = styled.span``;
+
+const BoldText = styled.b`
+  color: #33658A !important;
+`;
 
 const ProductId = styled.span``;
 
@@ -53,8 +58,15 @@ const ProductAmountContainer = styled.div`
 `;
 
 const ProductAmount = styled.div`
-  font-size: 24px;
-  margin: 5px;
+  font-size: 24px;  
+  border-radius: 10px;
+  border: 1px solid #33658A;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 5px;
   ${mobile({ margin: "5px 15px" })}
 `;
 
@@ -78,26 +90,61 @@ const CartProduct = (props) => {
         <Image src={producto.img} />
         <Details>
           <ProductName>
-            <b>Producto:</b> {producto.nombre}
+            <BoldText>Producto:</BoldText> {producto.nombre}
           </ProductName>
           <ProductId>
-            <b>ID:</b> {producto.id}
+            <BoldText>Precio/Unidad:</BoldText> {formatoMonedaArgentina(producto.precioPorUnidad)}
           </ProductId>
           <ProductColor color="black" />
           <ProductSize>
-            <b>Size:</b> 37.5
+            <BoldText>Size:</BoldText> 37.5
           </ProductSize>
         </Details>
       </ProductDetail>
       <PriceDetail>
         <ProductAmountContainer>
-          <Add style={{cursor: "pointer"}} onClick={() => sumarAlCarrito(producto)}/>
+          <Add 
+            onClick={() => sumarAlCarrito(producto)}
+            style={{
+              cursor: "pointer",
+              color: "#ED6A5E",
+            }} 
+          />
           <ProductAmount>{producto.cantidad}</ProductAmount>
-          <Remove style={{cursor: "pointer"}} onClick={() => restarAlCarrito(producto)}/>
+          {(producto.cantidad !== 1) ?
+           (
+            <Remove
+            onClick={() => restarAlCarrito(producto)}
+            style={{
+              cursor: "pointer",
+              color: "#ED6A5E",
+            }} 
+           />
+           ) : (
+            <DeleteOutline
+            onClick={() => removerDelcarrito(producto)}
+            style={{
+              cursor: "pointer",
+              fontSize: "24px",
+              color: "#ED6A5E"
+            }}
+            />
+          )}
+          
         </ProductAmountContainer>
         <PriceContainer>
-          <ProductPrice>{formatoMonedaArgentina(producto.precioPorUnidad)}</ProductPrice>
-          <ClearRounded style={{cursor: "pointer", fontSize: "48px", alignSelf: "center"}} onClick={() => removerDelcarrito(producto)}/>         
+          <ProductPrice>{formatoMonedaArgentina(producto.cantidad * producto.precioPorUnidad)}</ProductPrice>
+          { (producto.cantidad !== 1) && (
+              <DeleteOutline
+              onClick={() => removerDelcarrito(producto)}
+              style={{
+                cursor: "pointer",
+                fontSize: "35px",
+                color: "#ED6A5E"
+              }}
+            />
+          )}
+                   
         </PriceContainer>        
       </PriceDetail>
       </Product>

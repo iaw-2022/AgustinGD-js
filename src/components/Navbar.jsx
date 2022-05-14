@@ -20,6 +20,7 @@ const Container = styled.div`
   width: 100%;
   overflow: hidden;
   z-index: 4;
+  box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
   ${mobile({ height: "50px" })}
 `;
 

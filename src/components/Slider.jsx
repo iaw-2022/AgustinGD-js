@@ -12,6 +12,7 @@ const Container = styled.div`
   display: flex;
   position: relative;
   overflow: hidden;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   ${mobile({ display: "none" })}
 `;
 

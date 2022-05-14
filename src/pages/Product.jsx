@@ -35,7 +35,8 @@ const InfoContainer = styled.div`
 `;
 
 const Title = styled.h1`
-  font-weight: 200;
+  font-weight: 400;
+  color: #33658a;
 `;
 
 const Desc = styled.p`
@@ -82,6 +83,7 @@ const FilterSize = styled.select`
 const FilterSizeOption = styled.option``;
 
 const AddContainer = styled.div`
+  padding-top: 50px;
   width: 50%;
   display: flex;
   align-items: center;
@@ -99,7 +101,7 @@ const Amount = styled.span`
   width: 30px;
   height: 30px;
   border-radius: 10px;
-  border: 1px solid teal;
+  border: 1px solid #33658A;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -108,14 +110,10 @@ const Amount = styled.span`
 
 const Button = styled.button`
   padding: 15px;
-  border: 2px solid teal;
-  background-color: white;
+  border-color: #F6AE2D;
+  background-color: #F6AE2D;
   cursor: pointer;
   font-weight: 500;
-
-  &:hover{
-      background-color: #f8f4f4;
-  }
 `;
 
 const Product = (props) => {
@@ -144,31 +142,25 @@ const Product = (props) => {
             {productoSeleccionado.descripcion}
           </Desc>
           <Price>{formatoMonedaArgentina(productoSeleccionado.precioPorUnidad)}</Price>
-          <FilterContainer>
-            <Filter>
-              <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
-            </Filter>
-            <Filter>
-              <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
-              </FilterSize>
-            </Filter>
-          </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove onClick={() => restarCantidad()}/>
+              <Remove 
+                onClick={() => restarCantidad()}
+                style={{
+                  cursor: "pointer",
+                  color: "#ED6A5E",
+                }}
+              />
               <Amount>{cantidadASumar}</Amount>
-              <Add onClick={() => sumarCantidad()}/>
+              <Add 
+                onClick={() => sumarCantidad()}
+                style={{
+                  cursor: "pointer",
+                  color: "#ED6A5E",
+                }}
+              />
             </AmountContainer>
-            <Button onClick={() => sumarAlCarrito(productoSeleccionado, cantidadASumar)}>ADD TO CART</Button>
+            <Button onClick={() => sumarAlCarrito(productoSeleccionado, cantidadASumar)}>AÑADIR AL CARRITO</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>

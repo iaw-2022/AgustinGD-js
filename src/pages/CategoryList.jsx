@@ -54,7 +54,7 @@ const ProductList = (props) => {
       <Navbar productosEnCarrito={productosEnCarrito}/>
       <Announcement />
       <Top>        
-        <Title>Comprar por Categoria</Title>
+        <Title>COMPRAR POR CATEGORIA</Title>
       </Top>
       <FilterContainer>
         <Filter>

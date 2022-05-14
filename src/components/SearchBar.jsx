@@ -7,17 +7,20 @@ const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px 20px;
 `;
 
 const Language = styled.span`
+    color: #ED6A5E;
     font-size: 14px;
     cursor: pointer;
     ${mobile({ display: "none" })}
 `;
 
-const SearchContainer = styled.div`
-    border: 0.5px solid lightgray;
+const SearchContainer = styled.div`    
+    background-color: #ED6A5E;
+    box-shadow: inset  2px 2px 4px rgba(0,0,0,0.6);
+    border-radius: 5px;
     display: flex;
     align-items: center;
     margin-left: 25px;
@@ -26,8 +29,11 @@ const SearchContainer = styled.div`
 `;
 
 const Input = styled.input`
+    background-color: #ED6A5E;
     border: none;
-    ${mobile({ width: "80px" })}
+    color: white;
+    height: 28px;
+    ${mobile({ width: "105px" })}
 `;
 
 const SearchBar = (props) => {
@@ -42,7 +48,12 @@ const SearchBar = (props) => {
                     setTerminoBusqueda(event.target.value);
                 }}
             />
-            <Search style={{ color: "gray", fontSize: 16 }} />
+            <Search
+                style={{
+                    color: "white",
+                    fontSize: 16
+                }}
+            />
             </SearchContainer>
         </Container>
     );

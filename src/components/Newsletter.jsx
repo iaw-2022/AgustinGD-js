@@ -9,6 +9,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  box-shadow: 0px 2px 2px 1px rgba(0, 0, 0, 0.2);
 `;
 const Title = styled.h1`
   font-size: 70px;
