@@ -14,8 +14,8 @@ const Container = styled.div`
 const Products = (props) => {
   const { setProductoSeleccionado, sumarAlCarrito, terminoBusqueda, orden } = props;
 
-  const productosFiltrados = filtrarNombre(productos, terminoBusqueda);
-  ordenar(productosFiltrados, orden);
+  const productosFiltrados = terminoBusqueda ? filtrarNombre(productos, terminoBusqueda) : productos;  
+  orden ? ordenar(productosFiltrados, orden): void(0);
 
   return (
     <Container>

@@ -15,9 +15,9 @@ const Container = styled.div`
 
 const Categories = (props) => {
   const { terminoBusqueda, orden, setCategoriaSeleccionada } = props
-  
-  const categoriasFiltradas = filtrarNombre(allCategories, terminoBusqueda);
-  ordenar(categoriasFiltradas, orden);
+
+  const categoriasFiltradas = terminoBusqueda ? filtrarNombre(allCategories, terminoBusqueda) : allCategories;  
+  orden ? ordenar(categoriasFiltradas, orden): void(0);
 
   return (
     <Container>
