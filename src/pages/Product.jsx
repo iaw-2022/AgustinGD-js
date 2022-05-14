@@ -43,6 +43,10 @@ const Desc = styled.p`
   margin: 20px 0px;
 `;
 
+const UnitPrice = styled.p`
+  margin: 20px 0px;
+`;
+
 const Price = styled.span`
   font-weight: 100;
   font-size: 40px;
@@ -138,10 +142,11 @@ const Product = (props) => {
         </ImgContainer>
         <InfoContainer>
           <Title> <b>{productoSeleccionado.nombre}</b> con id: {productoSeleccionado.id}</Title>
-          <Desc>
-            {productoSeleccionado.descripcion}
-          </Desc>
-          <Price>{formatoMonedaArgentina(productoSeleccionado.precioPorUnidad)}</Price>
+          <Desc> {productoSeleccionado.descripcion} </Desc>
+          <UnitPrice>
+          {formatoMonedaArgentina(productoSeleccionado.precioPorUnidad)} (la unidad)
+          </UnitPrice>
+          <Price>{formatoMonedaArgentina(cantidadASumar * productoSeleccionado.precioPorUnidad)}</Price>
           <AddContainer>
             <AmountContainer>
               <Remove 
