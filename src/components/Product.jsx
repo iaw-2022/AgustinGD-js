@@ -57,14 +57,14 @@ const Icon = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #ED6A5E;
+  background-color: #F6AE2D;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 10px;
   transition: all 0.5s ease;
   &:hover {
-    background-color: #EB8278;
+    background-color: #f59e02;
     transform: scale(1.1);
   }
 `;
@@ -78,15 +78,15 @@ const Product = (props) => {
       <Image src={producto.img} />
       <Info>
         <Icon onClick={() => sumarAlCarrito(producto)}>
-          <ShoppingCartOutlined style={{ color: "white"}}/>
+          <ShoppingCartOutlined style={{ color: "black"}}/>
         </Icon>
         <Link onClick={() => setProductoSeleccionado(producto)} to={PRODUCT_PATH}>
           <Icon>
-            <SearchOutlined style={{ color: "white"}}/>
+            <SearchOutlined style={{ color: "black"}}/>
           </Icon>
         </Link>        
         <Icon>
-          <FavoriteBorderOutlined style={{ color: "white"}}/>
+          <FavoriteBorderOutlined style={{ color: "black"}}/>
         </Icon>
       </Info>
     </Container>
