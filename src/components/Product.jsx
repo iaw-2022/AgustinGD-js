@@ -5,6 +5,7 @@ import {
 } from "@material-ui/icons";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { PRODUCT_PATH } from "../utils/Constants";
 
 const Info = styled.div`
   opacity: 0;
@@ -78,7 +79,7 @@ const Product = (props) => {
         <Icon onClick={() => sumarAlCarrito(producto)}>
           <ShoppingCartOutlined style={{ color: "black"}}/>
         </Icon>
-        <Link onClick={() => setProductoSeleccionado(producto)} to="/product">
+        <Link onClick={() => setProductoSeleccionado(producto)} to={PRODUCT_PATH}>
           <Icon>
             <SearchOutlined style={{ color: "black"}}/>
           </Icon>

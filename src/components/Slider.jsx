@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { sliderItems } from "../data";
 import { mobile, tablet } from "../responsive";
 import { Link } from "react-router-dom";
+import { PRODUCT_LIST_PATH } from "../utils/Constants";
 
 const Container = styled.div`
   width: 100%;
@@ -110,7 +111,7 @@ const Slider = () => {
             <InfoContainer>
               <Title>{item.title}</Title>
               <Desc>{item.desc}</Desc>
-              <Link to="/productlist">
+              <Link to={PRODUCT_LIST_PATH}>
                 <Button>VER AHORA</Button>
               </Link>
             </InfoContainer>

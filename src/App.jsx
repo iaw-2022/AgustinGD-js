@@ -11,6 +11,14 @@ import { mostrarAlertaCarrito } from "./components/Alerts";
 import OrderList from "./pages/OrderList"
 import ScrollToTop from "./utils/ScrollToTop";
 import { productoSeleccionadoDefault, categoriaSeleccionadaDefault } from "./utils/DefaultData";
+import {
+  HOME_PATH,
+  SHOPPING_CART_PATH,
+  PRODUCT_PATH,
+  PRODUCT_LIST_PATH,
+  CATEGORY_LIST_PATH,  
+  ORDER_LIST_PATH,  
+} from "./utils/Constants"
 
 const App = () => {
 
@@ -79,35 +87,35 @@ const App = () => {
     <Router>
       <ScrollToTop/>
       <Routes>
-        <Route path="/" element={<Home 
+        <Route path={HOME_PATH} element={<Home 
             productosEnCarrito={productosEnCarrito} 
             setProductoSeleccionado={setProductoSeleccionado} 
             sumarAlCarrito={sumarAlCarrito}
             setCategoriaSeleccionada={setCategoriaSeleccionada}
         />} />
-        <Route path="/cart" element={<Cart 
+        <Route path={SHOPPING_CART_PATH} element={<Cart 
             productosEnCarrito={productosEnCarrito} 
             sumarAlCarrito={sumarAlCarrito} 
             restarAlCarrito={restarAlCarrito} 
             removerDelcarrito={removerDelcarrito} 
             limpiarCarrito={limpiarCarrito}
         />} />
-        <Route path="/product" element={<Product 
+        <Route path={PRODUCT_PATH} element={<Product 
           productosEnCarrito={productosEnCarrito} 
           productoSeleccionado={productoSeleccionado} 
           sumarAlCarrito={sumarAlCarrito} 
         />} />
-        <Route path="/productlist" element={<ProductList 
+        <Route path={PRODUCT_LIST_PATH} element={<ProductList 
           productosEnCarrito={productosEnCarrito} 
           setProductoSeleccionado={setProductoSeleccionado} 
           sumarAlCarrito={sumarAlCarrito}
           categoriaSeleccionada={categoriaSeleccionada}
         />} />
-        <Route path="/categoryList" element={<CategoryList 
+        <Route path={CATEGORY_LIST_PATH} element={<CategoryList 
           productosEnCarrito={productosEnCarrito}
           setCategoriaSeleccionada={setCategoriaSeleccionada} 
         />} />
-        <Route path="/orderList" element={<OrderList 
+        <Route path={ORDER_LIST_PATH} element={<OrderList 
           productosEnCarrito={productosEnCarrito} 
         />} />
         <Route path="/register" element={<Register />} />

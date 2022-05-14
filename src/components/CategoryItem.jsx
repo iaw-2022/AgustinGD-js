@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { Link } from "react-router-dom";
+import { PRODUCT_LIST_PATH } from "../utils/Constants";
 
 const Container = styled.div`
   flex: 1;
@@ -58,7 +59,7 @@ const CategoryItem = (props) => {
       <Image src={categoria.img} />
       <Info>
         <Title>{categoria.nombre}</Title>
-        <Link onClick={() => setCategoriaSeleccionada(categoria)} to="/productlist">
+        <Link onClick={() => setCategoriaSeleccionada(categoria)} to={PRODUCT_LIST_PATH}>
           <Button>COMPRAR AHORA</Button>
         </Link>        
       </Info>

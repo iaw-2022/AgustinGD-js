@@ -7,6 +7,11 @@ import { Link } from "react-router-dom";
 import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../utils/OperacionesCarrito";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 import SeccionAutenticacion from "./SeccionAutenticacion";
+import { 
+  HOME_PATH,
+  CATEGORY_LIST_PATH,
+  SHOPPING_CART_PATH,
+ } from "../utils/Constants";
 
 const Container = styled.div`
   height: 80px;
@@ -84,11 +89,11 @@ const Navbar = (props) => {
     <Container>
       <Wrapper>
         <Left>
-          <Link to="/categoryList" style={{ textDecoration: "none"}}>
+          <Link to={CATEGORY_LIST_PATH} style={{ textDecoration: "none"}}>
             <MenuItem style={{ color: "black", margin: "0px"}}> CATEGORIAS </MenuItem>
           </Link>
         </Left>
-        <Link to="/" style={{ textDecoration: "none"}}>
+        <Link to={HOME_PATH} style={{ textDecoration: "none"}}>
           <Center>          
               <BrandLogo 
                 src={window.location.origin + "/logoMei.png"}
@@ -103,7 +108,7 @@ const Navbar = (props) => {
           <MenuItem style={{ color: "black", marginLeft: "10px"}}>
             <Tooltip title={formatoMonedaArgentina(precioTotalProductosCarrito)}>
               <StyledBadge badgeContent={cantidadTotalProductosCarrito}>              
-                <Link to="/cart">
+                <Link to={SHOPPING_CART_PATH}>
                   <ShoppingCartOutlined style={{ color: "black", margin: "0px 10px"}}/>
                 </Link>
               </StyledBadge>
