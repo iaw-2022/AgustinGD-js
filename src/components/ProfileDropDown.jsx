@@ -8,13 +8,10 @@ import { useAuth0 } from '@auth0/auth0-react';
 const Container = styled.div`
     height: 40px;
     width: 135px;
+    ${mobile({ height: "31px" })}
 `;
 
-const Option = styled.option`
-    &:hover{
-        background-color: red !important;
-    }
-`;
+const Option = styled.option``;
 
 const Select = styled.select`
     border: none;
@@ -35,9 +32,8 @@ const Select = styled.select`
     &:hover{
         text-decoration: underline;
     }
-    &:focus > ${Option}:checked { 
-        background-color: red !important;
-    }
+
+    ${mobile({ fontSize: "12px" })}
 `;
 
 

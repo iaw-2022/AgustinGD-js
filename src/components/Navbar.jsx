@@ -70,7 +70,12 @@ const MenuItem = styled.div`
   font-size: 14px;
   cursor: pointer;
   margin-left: 25px;
-  ${mobile({ fontSize: "12px", marginLeft: "5px" })}
+
+  &:hover{
+    text-decoration: underline;
+  }
+
+  ${mobile({ fontSize: "12px", marginLeft: "5px" })}  
 `;
 
 const StyledBadge = styled(Badge)({
