@@ -95,9 +95,8 @@ const CartProduct = (props) => {
           <ProductId>
             <BoldText>Precio/Unidad:</BoldText> {formatoMonedaArgentina(producto.precioPorUnidad)}
           </ProductId>
-          <ProductColor color="black" />
           <ProductSize>
-            <BoldText>Size:</BoldText> 37.5
+            <BoldText></BoldText>
           </ProductSize>
         </Details>
       </ProductDetail>
