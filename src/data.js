@@ -25,80 +25,80 @@ export const sliderItems = [
   export const categories = [
     {
       id: 1,
-      img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      nombre: "SHIRT STYLE!",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652575869/app-granja/vacas_gelaow.jpg",
+      nombre: "LACTEOS",
     },
     {
       id: 2,
-      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-      nombre: "LOUNGEWEAR LOVE",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652575966/app-granja/gallinas_wfvevf.jpg",
+      nombre: "HUEVOS",
     },
     {
       id: 3,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
-      nombre: "LIGHT JACKETS",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652576402/app-granja/chanchos_xqv5tb.jpg",
+      nombre: "CARNES",
     },
   ];
 
   export const allCategories = [
     {
       id: 1,
-      img: "https://images.pexels.com/photos/5886041/pexels-photo-5886041.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652575869/app-granja/vacas_gelaow.jpg",
       nombre: "STAR FOLD",
     },
     {
       id: 2,
-      img: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652575966/app-granja/gallinas_wfvevf.jpg",
       nombre: "OFFICIAL CORNER",
     },
     {
       id: 3,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652576402/app-granja/chanchos_xqv5tb.jpg",
       nombre: "DETERIORATE HARBOR",
     },
     {
       id: 4,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652575869/app-granja/vacas_gelaow.jpg",
       nombre: "LISTEN TIE",
     },
     {
       id: 5,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652575966/app-granja/gallinas_wfvevf.jpg",
       nombre: "CONGRESS ASSESSMENT",
     },
     {
       id: 6,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652576402/app-granja/chanchos_xqv5tb.jpg",
       nombre: "ARM SOUR",
     },
     {
       id: 7,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652575869/app-granja/vacas_gelaow.jpg",
       nombre: "EVOKE CONSIDER",
     },
     {
       id: 8,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652575966/app-granja/gallinas_wfvevf.jpg",
       nombre: "DEVOTE AID",
     },
     {
       id: 9,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652576402/app-granja/chanchos_xqv5tb.jpg",
       nombre: "CONCEIVE MINORITY",
     },
     {
       id: 10,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652575869/app-granja/vacas_gelaow.jpg",
       nombre: "SNAP MOBILE",
     },
     {
       id: 11,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652575966/app-granja/gallinas_wfvevf.jpg",
       nombre: "WALL BASE",
     },
     {
       id: 12,
-      img: "https://images.pexels.com/photos/5480696/pexels-photo-5480696.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
+      img: "https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652576402/app-granja/chanchos_xqv5tb.jpg",
       nombre: "CASUALTY FLOOR",
     },    
   ];
@@ -106,10 +106,10 @@ export const sliderItems = [
   export const popularProducts = [
     {
       id:1,
-      nombre: "Remera Guitarrista",      
-      descripcion: "JAJIE esta re feliz el stickman",
+      nombre: "Frutillas",      
+      descripcion: "top 1 fruto mas mejor de la naturaleza",
       precioPorUnidad: 10,
-      img:"https://d3o2e4jr3mxnm3.cloudfront.net/Mens-Jake-Guitar-Vintage-Crusher-Tee_68382_1_lg.png",
+      img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652574926/app-granja/Frutillas_abfaru.png",
     },
     {
       id:2,
@@ -120,31 +120,31 @@ export const sliderItems = [
     },
     {
       id:3,
-      nombre: "Remera Abstracta",
-      descripcion: "No se, esta medio loca",
+      nombre: "Choclo",
+      descripcion: "Expresion argentina de cuando algo es mucho o muy largo",
       precioPorUnidad: 3000,
-      img:"https://www.prada.com/content/dam/pradanux_products/U/UCS/UCS319/1YOTF010O/UCS319_1YOT_F010O_S_182_SLF.png",
+      img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/c_fill,h_1400,q_100,w_1600/v1652574926/app-granja/Choclo_vvj52k.png",
     },
     {
       id:4,
-      nombre: "Vestido Tropical",
-      descripcion: "Muy parecido a miami",
+      nombre: "Pescado",
+      descripcion: "Nemo no esta aqui",
       precioPorUnidad: 40000,
-      img:"https://www.burdastyle.com/pub/media/catalog/product/cache/7bd3727382ce0a860b68816435d76e26/107/BUS-PAT-BURTE-1320516/1170x1470_BS_2016_05_132_front.png",
+      img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652575499/app-granja/Pescado_g8iyzq.png",
     },
     {
       id:5,
-      nombre: "Bolsa Reciclada",
-      descripcion: "Hecha con botellas de plastico recicladas 100% plastico",
+      nombre: "Carne de vaca",
+      descripcion: "La mejor carne indiscutible",
       precioPorUnidad: 500000,
-      img:"https://images.ctfassets.net/5gvckmvm9289/3BlDoZxSSjqAvv1jBJP7TH/65f9a95484117730ace42abf64e89572/Noissue-x-Creatsy-Tote-Bag-Mockup-Bundle-_4_-2.png",
+      img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652574920/app-granja/Carne_bu3txz.png",
     },
     {
       id:6,
-      nombre: "Gorra Perrito",
-      descripcion: "Un buen chico merece un buen hueso",
+      nombre: "Berenjena",
+      descripcion: "🍆",
       precioPorUnidad: 6000000,
-      img:"https://d3o2e4jr3mxnm3.cloudfront.net/Rocket-Vintage-Chill-Cap_66374_1_lg.png",
+      img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652574918/app-granja/berenjena_kq4ret.png",
     },
     {
       id:7,
@@ -155,10 +155,10 @@ export const sliderItems = [
     },
     {
       id:8,
-      nombre: "Campera De Mujer",
-      descripcion: "Una campera bien fashion",
+      nombre: "Azucar",
+      descripcion: "Claramente no es polvo magico, esto es un negocio 100% legal",
       precioPorUnidad: 800000000,
-      img:"https://www.pngarts.com/files/3/Women-Jacket-PNG-High-Quality-Image.png",
+      img:"https://res.cloudinary.com/dtkj9tvgw/image/upload/v1652574918/app-granja/Azucar_d09t78.png",
     },
   ]
 
