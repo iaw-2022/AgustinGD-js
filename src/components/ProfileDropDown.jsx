@@ -41,13 +41,17 @@ const ProfileDropDown = () => {
     const { logout, user } = useAuth0();
     const navigate = useNavigate();
     const username = user.name.split(' ').shift().toUpperCase();
+    USERNAME_OPTION.title = username;
 
     return (
         <Container>
-            <Select value={username} >
+            <Select
+                value={USERNAME_OPTION.value}
+                onChange={(event) => { handleChange(event, navigate, logout) }}
+            >
                 {options.map((option) => (
                     <>
-                        {handleOptions(option, logout, navigate, username)}
+                        {makeOption(option)}
                     </>
                 ))}
             </Select>
@@ -58,60 +62,77 @@ const ProfileDropDown = () => {
 
 export default ProfileDropDown;
 
-const handleOptions = (option, logout, navigate, username) => {
-    switch (option.type) {
-        case USERNAME_TYPE:
-            return (
-                <Option
-                    hidden
-                    key={option.id}
-                >
-                    {username}
-                </Option>);
-        case PATH_TYPE:
-            return (
-                <Option
-                    key={option.id}
-                    onClick={() => goToPath(option.path, navigate)}
-                >
-                    {option.title}
-                </Option>);
-        case LOGOUT_TYPE:
-            return (
-                <Option
-                    key={option.id}
-                    onClick={() => logout()}
-                >
-                    {option.title}
-                </Option>);
+const handleChange = (event, navigate, logout) => {
+    const selectedValue = parseInt(event.target.value);
+
+    switch (selectedValue) {
+        case USERNAME_OPTION.value:
+            break;
+        case ORDERS_LIST_OPTION.value:
+            goToPath(ORDER_LIST_PATH, navigate);
+            break;
+        case LOGOUT_OPTION.value:
+            logout();
+            break;
         default:
             break;
-    }
+    };
 }
 
 const goToPath = (path, navigate) => {
     navigate(path, { replace: true });
 }
 
-const USERNAME_TYPE = 0;
-const PATH_TYPE = 1;
-const LOGOUT_TYPE = 2;
+const makeOption = (option) => {
+    switch (option.value) {
+        case USERNAME_OPTION.value:
+            return makeHidden(option);
+        default:
+            return makeDefault(option);
+    }
+}
+
+const makeHidden = (option) => {
+    return (
+        <Option
+            hidden
+            value={option.value}
+            key={option.id}
+        >
+            {option.title}
+        </Option>);
+}
+
+const makeDefault = (option) => {
+    return (
+        <Option
+            value={option.value}
+            key={option.id}
+        >
+            {option.title}
+        </Option>);
+}
+
+let USERNAME_OPTION = {
+    id: 0,
+    value: 0,
+    title: "",
+};
+
+const ORDERS_LIST_OPTION = {
+    id: 1,
+    value: 1,
+    title: "Mis Pedidos",
+};
+
+const LOGOUT_OPTION = {
+    id: 2,
+    value: 2,
+    title: "Cerrar Sesión",
+};
 
 const options = [
-    {
-        id: 0,
-        title: "",
-        type: USERNAME_TYPE,
-    },
-    {
-        id: 1,
-        title: "Mis Pedidos",
-        type: PATH_TYPE,
-        path: ORDER_LIST_PATH,
-    },
-    {
-        id: 2,
-        title: "Cerrar Sesion",
-        type: LOGOUT_TYPE,
-    },
+    USERNAME_OPTION,
+    ORDERS_LIST_OPTION,
+    LOGOUT_OPTION,
 ];
