@@ -104,6 +104,9 @@ const Cart = (props) => {
   const precioTotalProductosCarrito = PrecioTotalProductosCarrito(productosEnCarrito);
   const cantidadTotalProductosCarrito = CantidadTotalProductosCarrito(productosEnCarrito);
   const idCliente = 1;
+  const subtotal = formatoMonedaArgentina(precioTotalProductosCarrito);
+  const funnyTax = formatoMonedaArgentina(399.99);
+  const funnyDiscount = formatoMonedaArgentina(-399.99);
 
   const mostrarProductosCarrito = () =>{
     const productosCarrito = [];
@@ -155,7 +158,6 @@ const Cart = (props) => {
         <Top>         
           <TopTexts>
             <TopText>Carrito de compras({cantidadTotalProductosCarrito})</TopText>
-            <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
           <TopButton type="filled">COMPRAR AHORA</TopButton>
         </Top>
@@ -167,19 +169,19 @@ const Cart = (props) => {
             <SummaryTitle>RESUMEN DEL PEDIDO</SummaryTitle>
             <SummaryItem>
               <SummaryItemText>Subtotal</SummaryItemText>
-              <SummaryItemPrice>$ 80</SummaryItemPrice>
+              <SummaryItemPrice>{subtotal}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-              <SummaryItemText>Estimated Shipping</SummaryItemText>
-              <SummaryItemPrice>$ 5.90</SummaryItemPrice>
+              <SummaryItemText>Impuesto al Oxigeno</SummaryItemText>
+              <SummaryItemPrice>{funnyTax}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem>
-              <SummaryItemText>Shipping Discount</SummaryItemText>
-              <SummaryItemPrice>$ -5.90</SummaryItemPrice>
+              <SummaryItemText>Descuento por Agradable Sujeto</SummaryItemText>
+              <SummaryItemPrice>{funnyDiscount}</SummaryItemPrice>
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
-              <SummaryItemPrice>{formatoMonedaArgentina(precioTotalProductosCarrito)}</SummaryItemPrice>
+              <SummaryItemPrice>{subtotal}</SummaryItemPrice>
             </SummaryItem>
             <Button onClick={() => procesarPedido()}>COMPRAR AHORA</Button>
           </Summary>

@@ -1,5 +1,4 @@
 import {
-  FavoriteBorderOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@material-ui/icons";
@@ -84,10 +83,7 @@ const Product = (props) => {
           <Icon>
             <SearchOutlined style={{ color: "black"}}/>
           </Icon>
-        </Link>        
-        <Icon>
-          <FavoriteBorderOutlined style={{ color: "black"}}/>
-        </Icon>
+        </Link>  
       </Info>
     </Container>
   );
