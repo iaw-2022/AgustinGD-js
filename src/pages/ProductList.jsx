@@ -10,6 +10,8 @@ import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import SelectOption from "../components/SelectOption";
 import { opcionesProducto } from "../utils/OrdenarJson";
+import { useParams } from "react-router-dom";
+import {titleFormat} from "../utils/TitleFormat";
 
 const Container = styled.div``;
 
@@ -46,9 +48,11 @@ const FilterText = styled.span`
 `;
 
 const ProductList = (props) => {
-  const {productosEnCarrito, setProductoSeleccionado, sumarAlCarrito, categoriaSeleccionada} = props;
+  const {productosEnCarrito, setProductoSeleccionado, sumarAlCarrito} = props;
   const [terminoBusqueda, setTerminoBusqueda] = useState("");
   const [orden, setOrden] = useState("");
+  const { category_name } = useParams();
+  const title = titleFormat(category_name)
 
   return (
     <Container>
@@ -56,7 +60,7 @@ const ProductList = (props) => {
       <Navbar productosEnCarrito={productosEnCarrito}/>
       <Announcement />
       <Top>
-        <Title>{categoriaSeleccionada.nombre}</Title>
+        <Title>{title}</Title>
       </Top>      
       <FilterContainer>
         <Filter>
