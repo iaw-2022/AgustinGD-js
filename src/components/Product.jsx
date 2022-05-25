@@ -74,7 +74,7 @@ const Product = (props) => {
   return (
     <Container>
       <Circle />
-      <Image src={producto.img} />
+      <Image src={producto.imagen_dir} />
       <Info>
         <Icon onClick={() => sumarAlCarrito(producto)}>
           <ShoppingCartOutlined style={{ color: "black"}}/>

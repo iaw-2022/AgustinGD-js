@@ -80,7 +80,7 @@ const CartProduct = (props) => {
     return (
       <Product>
       <ProductDetail>
-        <Image src={producto.img} />
+        <Image src={producto.imagen_dir} />
         <Details>
           <ProductName>
             <BoldText>Producto:</BoldText> {producto.nombre}

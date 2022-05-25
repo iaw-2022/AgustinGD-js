@@ -104,7 +104,7 @@ const Product = (props) => {
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src={productoSeleccionado.img} />
+          <Image src={productoSeleccionado.imagen_dir} />
         </ImgContainer>
         <InfoContainer>
           <Title> <b>{productoSeleccionado.nombre}</b> con id: {productoSeleccionado.id}</Title>
