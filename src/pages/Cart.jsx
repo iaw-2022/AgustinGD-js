@@ -138,7 +138,7 @@ const Cart = (props) => {
   const procesarPedido = async() => {    
     const pedidos = armarPedidos();
 
-    if (pedidos.length == 0) {
+    if (pedidos.length === 0) {
       console.log("No hay productos en el carrito");
     } else if (!isAuthenticated) {
       loginWithRedirect()
@@ -166,7 +166,7 @@ const Cart = (props) => {
               authorization: `Bearer ${token}`,
           },
       };
-      const response = await apiBase.post('/pedidos/', pedidos, header);
+      const response = await apiBase.post('/pedidos', pedidos, header);
       
       console.log(await response);
     } catch (e) {

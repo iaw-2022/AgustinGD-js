@@ -4,7 +4,7 @@ import CategoryItem from "./CategoryItem";
 import { filtrarNombre } from "../utils/FiltrarJson";
 import { ordenar } from "../utils/OrdenarJson";
 import apiBase from "../api/apiBase";
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 
 const Container = styled.div`
   padding: 20px;

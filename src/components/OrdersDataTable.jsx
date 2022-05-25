@@ -1,4 +1,3 @@
-import { pedidos } from "../data";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 import {
     TableContainer,
