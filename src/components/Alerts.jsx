@@ -64,7 +64,7 @@ export const mostrarAlertaExito = (mensaje) =>{
 export const mostrarAlertaCarrito = (mensaje) =>{
 
     toast.success( mensaje, {
-        position: "top-right",
+        position: "bottom-left",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
