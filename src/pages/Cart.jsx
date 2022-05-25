@@ -8,6 +8,8 @@ import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../u
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 import apiBase from "../api/apiBase";
 import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from "react-router-dom";
+import { ORDER_LIST_PATH } from "../utils/Constants";
 
 const Container = styled.div``;
 
@@ -108,7 +110,8 @@ const Cart = (props) => {
   const subtotal = formatoMonedaArgentina(precioTotalProductosCarrito);
   const funnyTax = formatoMonedaArgentina(399.99);
   const funnyDiscount = formatoMonedaArgentina(-399.99);  
-  const { getAccessTokenSilently } = useAuth0();
+  const { getAccessTokenSilently, isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
+  const navigate = useNavigate();
 
   const mostrarProductosCarrito = () =>{
     const productosCarrito = [];
@@ -132,10 +135,18 @@ const Cart = (props) => {
     return productosCarrito;
   } 
 
-  const procesarPedido = () => { 
+  const procesarPedido = async() => {    
     const pedidos = armarPedidos();
-    guardarPedidoApi(pedidos);
-    limpiarCarrito();
+
+    if (pedidos.length == 0) {
+      console.log("No hay productos en el carrito");
+    } else if (!isAuthenticated) {
+      loginWithRedirect()
+    } else {
+      await guardarPedidoApi(pedidos);
+      limpiarCarrito();
+      navigate(ORDER_LIST_PATH);
+    }
   }
 
   const armarPedidos = () => {
@@ -162,6 +173,8 @@ const Cart = (props) => {
         console.error(e);
     }    
   };
+
+  if (isLoading) return <div>Cargando Carrito...</div>
 
   return (
     <Container>
