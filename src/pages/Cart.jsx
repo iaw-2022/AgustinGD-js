@@ -6,6 +6,8 @@ import CartProduct from "../components/CartProduct";
 import { tablet } from "../responsive";
 import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../utils/OperacionesCarrito";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
+import apiBase from "../api/apiBase";
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Container = styled.div``;
 
@@ -103,10 +105,10 @@ const Cart = (props) => {
   const {productosEnCarrito, sumarAlCarrito, restarAlCarrito, removerDelcarrito, limpiarCarrito} = props;
   const precioTotalProductosCarrito = PrecioTotalProductosCarrito(productosEnCarrito);
   const cantidadTotalProductosCarrito = CantidadTotalProductosCarrito(productosEnCarrito);
-  const idCliente = 1;
   const subtotal = formatoMonedaArgentina(precioTotalProductosCarrito);
   const funnyTax = formatoMonedaArgentina(399.99);
-  const funnyDiscount = formatoMonedaArgentina(-399.99);
+  const funnyDiscount = formatoMonedaArgentina(-399.99);  
+  const { getAccessTokenSilently } = useAuth0();
 
   const mostrarProductosCarrito = () =>{
     const productosCarrito = [];
@@ -139,14 +141,26 @@ const Cart = (props) => {
   const armarPedidos = () => {
     return productosEnCarrito.reduce((pedidosAux, productoEnCarrito) =>
       [...pedidosAux, {
-        cliente_id: idCliente, 
         producto_id: productoEnCarrito.id, 
         cantidad: productoEnCarrito.cantidad}], []
     )
   };
 
-  const guardarPedidoApi = (pedidos) => {
+  const guardarPedidoApi = async (pedidos) => {
     console.log(pedidos);
+    try {
+      const token = await getAccessTokenSilently();
+      const header = {
+          headers: {
+              authorization: `Bearer ${token}`,
+          },
+      };
+      const response = await apiBase.post('/pedidos/', pedidos, header);
+      
+      console.log(await response);
+    } catch (e) {
+        console.error(e);
+    }    
   };
 
   return (
