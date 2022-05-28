@@ -48,10 +48,8 @@ const OrdersDataTable = () => {
                         authorization: `Bearer ${token}`,
                     },
                 };
-                console.log(header);
                 const response = await apiBase.get('/pedidos/cliente', header);
                 
-                console.log(await response);
                 setOrders(await response.data);
             } catch (e) {
                 console.error(e);
