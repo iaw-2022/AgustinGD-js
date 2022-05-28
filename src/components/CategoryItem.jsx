@@ -60,7 +60,7 @@ const CategoryItem = (props) => {
       <Image src={categoria.imagen_dir} />
       <Info>
         <Title>{categoria.nombre}</Title>
-        <Link onClick={() => setCategoriaSeleccionada(categoria)} to={PRODUCT_LIST_PATH}>
+        <Link onClick={() => setCategoriaSeleccionada(categoria)} to={`${PRODUCT_LIST_PATH}/${categoria.nombre}`}>
           <Button>COMPRAR AHORA</Button>
         </Link>        
       </Info>
