@@ -4,6 +4,7 @@ import ProductList from "./pages/ProductList";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
+import NotFound from "./pages/NotFound";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CategoryList from "./pages/CategoryList";
@@ -17,12 +18,13 @@ import {
   PRODUCT_PATH,
   PRODUCT_LIST_PATH,
   CATEGORY_LIST_PATH,  
-  ORDER_LIST_PATH,  
+  ORDER_LIST_PATH,
+  NOT_FOUND_PATH,  
 } from "./utils/Constants"
 
 const App = () => {
 
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(categoriaSeleccionadaDefault);
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
 
   const [productoSeleccionado, setProductoSeleccionado] = useState(() => {
     const localData = localStorage.getItem('productoSeleccionado');
@@ -116,6 +118,9 @@ const App = () => {
           setCategoriaSeleccionada={setCategoriaSeleccionada} 
         />} />
         <Route path={ORDER_LIST_PATH} element={<OrderList 
+          productosEnCarrito={productosEnCarrito} 
+        />} />
+        <Route path={NOT_FOUND_PATH} element={<NotFound 
           productosEnCarrito={productosEnCarrito} 
         />} />
         <Route path="/register" element={<Register />} />
