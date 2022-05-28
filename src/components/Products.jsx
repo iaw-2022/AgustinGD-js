@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Product from "./Product";
 import { filtrarNombre } from "../utils/FiltrarJson";
 import { ordenar } from "../utils/OrdenarJson";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 const Container = styled.div`
     padding: 20px;

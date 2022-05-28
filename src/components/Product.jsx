@@ -79,7 +79,7 @@ const Product = (props) => {
         <Icon onClick={() => sumarAlCarrito(producto)}>
           <ShoppingCartOutlined style={{ color: "black"}}/>
         </Icon>
-        <Link onClick={() => setProductoSeleccionado(producto)} to={PRODUCT_PATH}>
+        <Link onClick={() => setProductoSeleccionado(producto)} to={`${PRODUCT_PATH}/${producto.nombre}`}>
           <Icon>
             <SearchOutlined style={{ color: "black"}}/>
           </Icon>

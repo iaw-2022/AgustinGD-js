@@ -11,7 +11,6 @@ import CategoryList from "./pages/CategoryList";
 import { mostrarAlertaCarrito } from "./components/Alerts";
 import OrderList from "./pages/OrderList"
 import ScrollToTop from "./utils/ScrollToTop";
-import { productoSeleccionadoDefault, categoriaSeleccionadaDefault } from "./utils/DefaultData";
 import {
   HOME_PATH,
   SHOPPING_CART_PATH,
@@ -25,15 +24,7 @@ import {
 const App = () => {
 
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
-
-  const [productoSeleccionado, setProductoSeleccionado] = useState(() => {
-    const localData = localStorage.getItem('productoSeleccionado');
-    return localData ? JSON.parse(localData) : productoSeleccionadoDefault;
-  });
-
-  useEffect(()=> {
-    localStorage.setItem('productoSeleccionado', JSON.stringify(productoSeleccionado))
-  }, [productoSeleccionado]);
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
   const [productosEnCarrito, setproductosEnCarrito] = useState(() => {
     const localData = localStorage.getItem('productosEnCarrito');

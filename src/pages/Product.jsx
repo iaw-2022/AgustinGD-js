@@ -5,16 +5,19 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 import { Alerta } from "../components/Alerts";
+import { useParams } from "react-router-dom";
+import apiBase from "../api/apiBase";
+import NotFound from "./NotFound";
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection:"column" })}
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
 const ImgContainer = styled.div`
@@ -37,6 +40,7 @@ const InfoContainer = styled.div`
 const Title = styled.h1`
   font-weight: 400;
   color: #33658a;
+  font-weight: bold;
 `;
 
 const Desc = styled.p`
@@ -87,35 +91,62 @@ const Button = styled.button`
 `;
 
 const Product = (props) => {
-  const {productosEnCarrito, productoSeleccionado, sumarAlCarrito} = props;
+  const { productosEnCarrito, productoSeleccionado, sumarAlCarrito } = props;
+  const [cantidadASumar, setCantidadASumar] = useState(1);
+  const { product_name } = useParams();
+  const [product, setProduct] = useState(null);
+  const productNotFound = (product) && (product.length === 0);
 
-  const [cantidadASumar, setCantidadASumar] = useState(1);  
-
-  const sumarCantidad = () => { setCantidadASumar(cantidadASumar+1) };
+  const sumarCantidad = () => { setCantidadASumar(cantidadASumar + 1) };
 
   const restarCantidad = () => {
-   if (cantidadASumar > 1)  setCantidadASumar(cantidadASumar-1) ;
+    if (cantidadASumar > 1) setCantidadASumar(cantidadASumar - 1);
   };
+
+  useEffect(() => {
+    if (!productoSeleccionado) {
+      const fetchProduct = async () => {
+        try {
+          const response = await apiBase.get(`/productos/${product_name}`)
+          const data = response.data.length === 0 ? response.data : response.data[0];
+          setProduct(data)
+        } catch (err) {
+          console.log("ayayay")
+        }
+      }
+
+      fetchProduct();
+    } else {
+      setProduct(productoSeleccionado);
+    }
+  }, [product_name, productoSeleccionado]);
+
+  if (!product) {
+    return <div>Cargando...</div>
+  }
+
+  if (productNotFound)
+    return (<NotFound productosEnCarrito={productosEnCarrito} />)
 
   return (
     <Container>
-      <Alerta/> 
-      <Navbar productosEnCarrito={productosEnCarrito}/>
+      <Alerta />
+      <Navbar productosEnCarrito={productosEnCarrito} />
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src={productoSeleccionado.imagen_dir} />
+          <Image src={product.imagen_dir} />
         </ImgContainer>
         <InfoContainer>
-          <Title> <b>{productoSeleccionado.nombre}</b> con id: {productoSeleccionado.id}</Title>
-          <Desc> {productoSeleccionado.descripcion} </Desc>
+          <Title>{product.nombre}</Title>
+          <Desc> {product.descripcion} </Desc>
           <UnitPrice>
-          {formatoMonedaArgentina(productoSeleccionado.precioPorUnidad)} (la unidad)
+            {formatoMonedaArgentina(product.precioPorUnidad)} (la unidad)
           </UnitPrice>
-          <Price>{formatoMonedaArgentina(cantidadASumar * productoSeleccionado.precioPorUnidad)}</Price>
+          <Price>{formatoMonedaArgentina(cantidadASumar * product.precioPorUnidad)}</Price>
           <AddContainer>
             <AmountContainer>
-              <Remove 
+              <Remove
                 onClick={() => restarCantidad()}
                 style={{
                   cursor: "pointer",
@@ -123,7 +154,7 @@ const Product = (props) => {
                 }}
               />
               <Amount>{cantidadASumar}</Amount>
-              <Add 
+              <Add
                 onClick={() => sumarCantidad()}
                 style={{
                   cursor: "pointer",
@@ -131,7 +162,7 @@ const Product = (props) => {
                 }}
               />
             </AmountContainer>
-            <Button onClick={() => sumarAlCarrito(productoSeleccionado, cantidadASumar)}>AÑADIR AL CARRITO</Button>
+            <Button onClick={() => sumarAlCarrito(product, cantidadASumar)}>AÑADIR AL CARRITO</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
