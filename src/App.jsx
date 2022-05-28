@@ -100,12 +100,12 @@ const App = () => {
             removerDelcarrito={removerDelcarrito} 
             limpiarCarrito={limpiarCarrito}
         />} />
-        <Route path={PRODUCT_PATH} element={<Product 
+        <Route path={`${PRODUCT_PATH}/:product_name`} element={<Product 
           productosEnCarrito={productosEnCarrito} 
           productoSeleccionado={productoSeleccionado} 
           sumarAlCarrito={sumarAlCarrito} 
         />} />
-        <Route path={PRODUCT_LIST_PATH} element={<ProductList 
+        <Route path={`${PRODUCT_LIST_PATH}/:category_name`} element={<ProductList 
           productosEnCarrito={productosEnCarrito} 
           setProductoSeleccionado={setProductoSeleccionado} 
           sumarAlCarrito={sumarAlCarrito}
