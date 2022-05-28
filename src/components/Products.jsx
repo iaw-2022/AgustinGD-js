@@ -2,9 +2,7 @@ import styled from "styled-components";
 import Product from "./Product";
 import { filtrarNombre } from "../utils/FiltrarJson";
 import { ordenar } from "../utils/OrdenarJson";
-import apiBase from "../api/apiBase";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 const Container = styled.div`
     padding: 20px;
@@ -14,25 +12,10 @@ const Container = styled.div`
 `;
 
 const Products = (props) => {
-  const { setProductoSeleccionado, sumarAlCarrito, terminoBusqueda, orden } = props;  
-  const { category_name } = useParams();
-  const [products, setProducts] = useState([]);
+  const { setProductoSeleccionado, sumarAlCarrito, terminoBusqueda, orden, products } = props;  
 
-  useEffect(() => {
-    
-    const fetchRandomProducts = async () => {
-      try{
-        const response = (category_name) ? 
-          await apiBase.get("/productos") : 
-          await apiBase.get("/productos/random/4")
-        setProducts(response.data)
-      } catch (err){
-        console.log("ayayay")
-      }
-    }
-
-    fetchRandomProducts();
-  }, [category_name]);
+  if (!products)
+    return <div>Cargando Productos...</div>;
 
   const productosFiltrados = terminoBusqueda ? filtrarNombre(products, terminoBusqueda) : products;  
   orden ? ordenar(productosFiltrados, orden): void(0);
