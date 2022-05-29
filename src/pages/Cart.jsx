@@ -10,7 +10,8 @@ import apiBase from "../api/apiBase";
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from "react-router-dom";
 import { ORDER_LIST_PATH } from "../utils/Constants";
-
+import { toast } from 'react-toastify';
+import { useState } from "react";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -104,89 +105,139 @@ const Button = styled.button`
 `;
 
 const Cart = (props) => {
-  const {productosEnCarrito, sumarAlCarrito, restarAlCarrito, removerDelcarrito, limpiarCarrito} = props;
+  const { productosEnCarrito, sumarAlCarrito, restarAlCarrito, removerDelcarrito, limpiarCarrito } = props;
   const precioTotalProductosCarrito = PrecioTotalProductosCarrito(productosEnCarrito);
   const cantidadTotalProductosCarrito = CantidadTotalProductosCarrito(productosEnCarrito);
   const subtotal = formatoMonedaArgentina(precioTotalProductosCarrito);
   const funnyTax = formatoMonedaArgentina(399.99);
-  const funnyDiscount = formatoMonedaArgentina(-399.99);  
+  const funnyDiscount = formatoMonedaArgentina(-399.99);
   const { getAccessTokenSilently, isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
+  const [orderNowDisabled, setOrderNowDisabled] = useState(false);
 
-  const mostrarProductosCarrito = () =>{
+  const mostrarProductosCarrito = () => {
     const productosCarrito = [];
     var producto = {};
-    
-    for (var i=0; i < productosEnCarrito.length; i++) {
+
+    for (var i = 0; i < productosEnCarrito.length; i++) {
       producto = productosEnCarrito[i];
 
-      if(i === 0){
+      if (i === 0) {
         productosCarrito.push(
-          <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito} removerDelcarrito={removerDelcarrito}/>
+          <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito} removerDelcarrito={removerDelcarrito} />
         )
-      } else{
-        productosCarrito.push(          
-            <Hr />,
-            <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito} removerDelcarrito={removerDelcarrito}/>          
+      } else {
+        productosCarrito.push(
+          <Hr />,
+          <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito} removerDelcarrito={removerDelcarrito} />
         )
       };
     };
 
     return productosCarrito;
-  } 
+  }
 
-  const procesarPedido = async() => {    
+  const procesarPedido = async () => {
     const pedidos = armarPedidos();
+    var id = null;
+    setOrderNowDisabled(true);
 
-    if (pedidos.length === 0) {
-      console.log("No hay productos en el carrito");
-    } else if (!isAuthenticated) {
-      loginWithRedirect()
-    } else {
-      await guardarPedidoApi(pedidos);
-      limpiarCarrito();
-      navigate(ORDER_LIST_PATH);
+    try {
+      if (pedidos.length === 0) {
+        console.log("No hay productos en el carrito");
+      } else if (!isAuthenticated) {
+        loginWithRedirect()
+      } else {
+        
+        id = toast.loading("Procesando Pedido")
+        await guardarPedidoApi(pedidos)
+        .then(() => setTimeout(apiSuccess, 1500, id))
+        
+      }
+    } catch (e) {
+      console.error(e);
+      setTimeout(apiError, 1500, id)      
     }
   }
 
   const armarPedidos = () => {
     return productosEnCarrito.reduce((pedidosAux, productoEnCarrito) =>
       [...pedidosAux, {
-        producto_id: productoEnCarrito.id, 
-        cantidad: productoEnCarrito.cantidad}], []
+        producto_id: productoEnCarrito.id,
+        cantidad: productoEnCarrito.cantidad
+      }], []
     )
   };
 
   const guardarPedidoApi = async (pedidos) => {
-    console.log(pedidos);
-    try {
-      const token = await getAccessTokenSilently();
-      const header = {
-          headers: {
-              authorization: `Bearer ${token}`,
-          },
-      };
-      const response = await apiBase.post('/pedidos', pedidos, header);
-      
-      console.log(await response);
-    } catch (e) {
-        console.error(e);
-    }    
+    const token = await getAccessTokenSilently();
+    const header = {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    };
+    await apiBase.post('/pedidos', pedidos, header);
   };
 
+  const apiSuccess = (id) =>{
+    toast.update(
+      id,
+      {
+        render: "Pedidos Cargados Exitosamente",
+        type: "success",
+        isLoading: false,
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      },
+    );
+
+    limpiarCarrito();
+    navigate(ORDER_LIST_PATH);
+    setOrderNowDisabled(false);
+  }
+
+  const apiError = (id) =>{
+    toast.update(
+      id,
+      {
+        render: "Hubo un error al procesar el pedido, intente denuevo...",
+        type: "error",
+        isLoading: false,
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+    
+    setOrderNowDisabled(false);
+  }
   if (isLoading) return <div>Cargando Carrito...</div>
 
   return (
     <Container>
-      <Navbar productosEnCarrito={productosEnCarrito}/>
+      <Navbar productosEnCarrito={productosEnCarrito} />
       <Announcement />
       <Wrapper>
         <Title>TU CARRITO DE COMPRAS</Title>
-        <Top>         
+        <Top>
           <TopTexts>
             <TopText>Carrito de compras({cantidadTotalProductosCarrito})</TopText>
           </TopTexts>
-          <TopButton type="filled">COMPRAR AHORA</TopButton>
+          <TopButton 
+            type="filled"
+            onClick={() => orderNowDisabled ? void(0) : procesarPedido()}
+          >
+              COMPRAR AHORA
+          </TopButton>
         </Top>
         <Bottom>
           <Info>
@@ -210,7 +261,11 @@ const Cart = (props) => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{subtotal}</SummaryItemPrice>
             </SummaryItem>
-            <Button onClick={() => procesarPedido()}>COMPRAR AHORA</Button>
+            <Button 
+              onClick={() => orderNowDisabled ? void(0) : procesarPedido()}
+            >
+              COMPRAR AHORA
+            </Button>
           </Summary>
         </Bottom>
       </Wrapper>
