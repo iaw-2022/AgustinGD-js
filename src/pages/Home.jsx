@@ -6,7 +6,6 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
 import Slider from "./../components/Slider";
-import { Alerta } from "../components/Alerts";
 import apiBase from "../api/apiBase";
 
 const Home = (props) => {
@@ -27,8 +26,7 @@ const Home = (props) => {
   }, []);
   
   return (
-    <div>
-      <Alerta/>      
+    <div>   
       <Navbar 
         productosEnCarrito={productosEnCarrito}
       />      

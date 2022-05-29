@@ -20,6 +20,7 @@ import {
   ORDER_LIST_PATH,
   NOT_FOUND_PATH,  
 } from "./utils/Constants"
+import { Alerta } from "./components/Alerts";
 
 const App = () => {
 
@@ -79,6 +80,7 @@ const App = () => {
   return (
     <Router>
       <ScrollToTop/>
+      <Alerta />
       <Routes>
         <Route path={HOME_PATH} element={<Home 
             productosEnCarrito={productosEnCarrito} 

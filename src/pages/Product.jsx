@@ -7,7 +7,6 @@ import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
 import React, { useEffect, useState } from "react";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
-import { Alerta } from "../components/Alerts";
 import { useParams } from "react-router-dom";
 import apiBase from "../api/apiBase";
 import NotFound from "./NotFound";
@@ -130,7 +129,6 @@ const Product = (props) => {
 
   return (
     <Container>
-      <Alerta />
       <Navbar productosEnCarrito={productosEnCarrito} />
       <Announcement />
       <Wrapper>

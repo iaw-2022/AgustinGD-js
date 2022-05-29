@@ -5,7 +5,6 @@ import Products from "../components/Products";
 import Newsletter from "../components/Newsletter";
 import Footer from "../components/Footer";
 import { mobile } from "../responsive";
-import { Alerta } from "../components/Alerts";
 import apiBase from "../api/apiBase";
 import React, { useEffect, useState } from "react";
 import SearchBar from "../components/SearchBar";
@@ -112,7 +111,6 @@ const ProductList = (props) => {
 
   return (
     <Container>
-      <Alerta />
       <Navbar productosEnCarrito={productosEnCarrito} />
       <Announcement />
       <Top>
