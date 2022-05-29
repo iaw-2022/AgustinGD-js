@@ -36,6 +36,12 @@ const App = () => {
     localStorage.setItem('productosEnCarrito', JSON.stringify(productosEnCarrito))
   }, [productosEnCarrito]);
   
+  const sumarAlCarritoAlerta = (producto, cantidadElegida) => {
+    const cantidadASumar = sumarAlCarrito(producto, cantidadElegida)
+
+    mostrarAlertaCarrito(`${producto.nombre} x ${cantidadASumar}`);
+  };
+
   const sumarAlCarrito = (producto, cantidadElegida) => {
     const cantidadASumar = cantidadElegida ? cantidadElegida : 1;
     const existe = productosEnCarrito.find((x) => x.id === producto.id);
@@ -50,7 +56,7 @@ const App = () => {
       setproductosEnCarrito([...productosEnCarrito, { ...producto, cantidad: cantidadASumar }]);         
     }
     
-    mostrarAlertaCarrito(`${producto.nombre} x ${cantidadASumar}`);
+    return cantidadASumar;
   };
 
   const restarAlCarrito = (producto) => {
@@ -85,7 +91,7 @@ const App = () => {
         <Route path={HOME_PATH} element={<Home 
             productosEnCarrito={productosEnCarrito} 
             setProductoSeleccionado={setProductoSeleccionado} 
-            sumarAlCarrito={sumarAlCarrito}
+            sumarAlCarrito={sumarAlCarritoAlerta}
             setCategoriaSeleccionada={setCategoriaSeleccionada}
         />} />
         <Route path={SHOPPING_CART_PATH} element={<Cart 
@@ -98,12 +104,12 @@ const App = () => {
         <Route path={`${PRODUCT_PATH}/:product_name`} element={<Product 
           productosEnCarrito={productosEnCarrito} 
           productoSeleccionado={productoSeleccionado} 
-          sumarAlCarrito={sumarAlCarrito} 
+          sumarAlCarrito={sumarAlCarritoAlerta} 
         />} />
         <Route path={`${PRODUCT_LIST_PATH}/:category_name`} element={<ProductList 
           productosEnCarrito={productosEnCarrito} 
           setProductoSeleccionado={setProductoSeleccionado} 
-          sumarAlCarrito={sumarAlCarrito}
+          sumarAlCarrito={sumarAlCarritoAlerta}
           categoriaSeleccionada={categoriaSeleccionada}
         />} />
         <Route path={CATEGORY_LIST_PATH} element={<CategoryList 
