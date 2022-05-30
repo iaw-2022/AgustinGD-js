@@ -106,7 +106,7 @@ const zebraColumns = (orders) => {
 }
 
 const tableCells = (row) => {
-    const formatedOrderDate = dateFormat(orderDate);
+    const formatedOrderDate = dateFormat(row.created_at);
     return (
         <>
             <TableCell className="tableCell">{formatedOrderDate}</TableCell>
