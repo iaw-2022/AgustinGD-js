@@ -11,6 +11,7 @@ import {
 import React, { useEffect, useState } from 'react';
 import apiBase from "../api/apiBase";
 import { useAuth0 } from '@auth0/auth0-react';
+import { dateFormat } from "../utils/DateFormat";
 
 const tableHeadStyle = {
     bgcolor: "#33658A",
@@ -105,9 +106,10 @@ const zebraColumns = (orders) => {
 }
 
 const tableCells = (row) => {
+    const formatedOrderDate = dateFormat(orderDate);
     return (
         <>
-            <TableCell className="tableCell">{row.created_at}</TableCell>
+            <TableCell className="tableCell">{formatedOrderDate}</TableCell>
             <TableCell className="tableCell">{row.nombre}</TableCell>
             <TableCell className="tableCell">x{row.cantidad}</TableCell>
             <TableCell className="tableCell">{formatoMonedaArgentina(row.total)}</TableCell>
