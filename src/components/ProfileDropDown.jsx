@@ -8,7 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 const Container = styled.div`
     height: 40px;
     width: 135px;
-    ${mobile({ height: "32px" })}
+    ${mobile({ height: "34px" })}
 `;
 
 const Option = styled.option``;
