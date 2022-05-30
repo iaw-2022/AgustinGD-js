@@ -10,8 +10,8 @@ import apiBase from "../api/apiBase";
 import { useAuth0 } from '@auth0/auth0-react';
 import { useNavigate } from "react-router-dom";
 import { ORDER_LIST_PATH } from "../utils/Constants";
-import { toast } from 'react-toastify';
 import { useState } from "react";
+import { newPromise, updatePromise } from "../components/Alerts";
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -148,14 +148,13 @@ const Cart = (props) => {
       } else if (!isAuthenticated) {
         loginWithRedirect()
       } else {
-        
-        id = toast.loading("Procesando Pedido")
+        const promiseMessage = "Procesando Pedido"
+        id = newPromise(promiseMessage);
+
         await guardarPedidoApi(pedidos)
-        .then(() => setTimeout(apiSuccess, 1500, id))
-        
+        .then(() => setTimeout(apiSuccess, 1500, id))        
       }
     } catch (e) {
-      console.error(e);
       setTimeout(apiError, 1500, id)      
     }
   }
@@ -180,44 +179,20 @@ const Cart = (props) => {
   };
 
   const apiSuccess = (id) =>{
-    toast.update(
-      id,
-      {
-        render: "Pedidos Cargados Exitosamente",
-        type: "success",
-        isLoading: false,
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      },
-    );
+    const mensajeError = "Pedidos Cargados Exitosamente";
+    const type = "success";
 
+    updatePromise(id, type, mensajeError);
     limpiarCarrito();
     navigate(ORDER_LIST_PATH);
     setOrderNowDisabled(false);
   }
 
   const apiError = (id) =>{
-    toast.update(
-      id,
-      {
-        render: "Hubo un error al procesar el pedido, intente denuevo...",
-        type: "error",
-        isLoading: false,
-        position: "top-center",
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: true,
-        progress: undefined,
-      }
-    );
-    
+    const mensajeError = "Hubo un error al procesar el pedido, intente denuevo...";
+    const type = "error"
+
+    updatePromise(id, type, mensajeError);
     setOrderNowDisabled(false);
   }
   if (isLoading) return <div>Cargando Carrito...</div>

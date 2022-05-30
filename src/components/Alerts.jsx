@@ -62,3 +62,24 @@ export const mostrarAlertaCarrito = (mensaje) => {
         icon: <ShoppingCartRounded style={{ color: "#F6AE2D" }} />,
     });
 }
+
+export const newPromise = (message) =>{
+    return toast.loading(message);
+}
+export const updatePromise = (id, type, message) => {
+    toast.update(
+        id,
+        {
+            render: message,
+            type: type,
+            isLoading: false,
+            position: "top-center",
+            autoClose: 3000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+        }
+    );
+}
