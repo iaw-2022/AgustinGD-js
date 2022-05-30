@@ -43,17 +43,17 @@ const ProfileDropDown = () => {
     const username = user.name.split(' ').shift().toUpperCase();
     USERNAME_OPTION.title = username;
 
+    const optionsList = options.map((option) => (
+        makeOption(option)
+    ))
+    
     return (
         <Container>
             <Select
                 value={USERNAME_OPTION.value}
                 onChange={(event) => { handleChange(event, navigate, logout) }}
             >
-                {options.map((option) => (
-                    <>
-                        {makeOption(option)}
-                    </>
-                ))}
+                {optionsList}
             </Select>
         </Container>
 
