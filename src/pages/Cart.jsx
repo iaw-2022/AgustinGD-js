@@ -128,7 +128,7 @@ const Cart = (props) => {
         )
       } else {
         productosCarrito.push(
-          <Hr />,
+          <Hr key={producto.nombre}/>,
           <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito} removerDelcarrito={removerDelcarrito} />
         )
       };
@@ -136,6 +136,7 @@ const Cart = (props) => {
 
     return productosCarrito;
   }
+
 
   const procesarPedido = async () => {
     const pedidos = armarPedidos();
@@ -152,10 +153,10 @@ const Cart = (props) => {
         id = newPromise(promiseMessage);
 
         await guardarPedidoApi(pedidos)
-        .then(() => setTimeout(apiSuccess, 1500, id))        
+          .then(() => setTimeout(apiSuccess, 1500, id))
       }
     } catch (e) {
-      setTimeout(apiError, 1500, id)      
+      setTimeout(apiError, 1500, id)
     }
   }
 
@@ -178,7 +179,7 @@ const Cart = (props) => {
     await apiBase.post('/pedidos/cliente', pedidos, header);
   };
 
-  const apiSuccess = (id) =>{
+  const apiSuccess = (id) => {
     const mensajeError = "Pedidos Cargados Exitosamente";
     const type = "success";
 
@@ -188,7 +189,7 @@ const Cart = (props) => {
     setOrderNowDisabled(false);
   }
 
-  const apiError = (id) =>{
+  const apiError = (id) => {
     const mensajeError = "Hubo un error al procesar el pedido, intente denuevo...";
     const type = "error"
 
@@ -207,11 +208,11 @@ const Cart = (props) => {
           <TopTexts>
             <TopText>Carrito de compras({cantidadTotalProductosCarrito})</TopText>
           </TopTexts>
-          <TopButton 
+          <TopButton
             type="filled"
-            onClick={() => orderNowDisabled ? void(0) : procesarPedido()}
+            onClick={() => orderNowDisabled ? void (0) : procesarPedido()}
           >
-              COMPRAR AHORA
+            COMPRAR AHORA
           </TopButton>
         </Top>
         <Bottom>
@@ -236,8 +237,8 @@ const Cart = (props) => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{subtotal}</SummaryItemPrice>
             </SummaryItem>
-            <Button 
-              onClick={() => orderNowDisabled ? void(0) : procesarPedido()}
+            <Button
+              onClick={() => orderNowDisabled ? void (0) : procesarPedido()}
             >
               COMPRAR AHORA
             </Button>
