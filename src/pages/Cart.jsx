@@ -175,7 +175,7 @@ const Cart = (props) => {
         authorization: `Bearer ${token}`,
       },
     };
-    await apiBase.post('/pedidos', pedidos, header);
+    await apiBase.post('/pedidos/cliente', pedidos, header);
   };
 
   const apiSuccess = (id) =>{
