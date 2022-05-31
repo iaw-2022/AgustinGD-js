@@ -15,7 +15,7 @@ const Home = (props) => {
   useEffect(() => {    
     const fetchRandomProducts = async () => {
       try{
-        const response = await apiBase.get("/productos/random/4")
+        const response = await apiBase.get("/productos/random/10")
         setProducts(response.data)
       } catch (err){
         console.log("ayayay")
