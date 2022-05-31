@@ -34,7 +34,7 @@ const Description = styled.h1`
   font-size: 24px;
   word-wrap: break-word;
   margin: 20px;
-  ${mobile({ marginTop: "0px" })}
+  ${mobile({ marginTop: "0px", textAlign: "center" })}
 `;
 
 const FilterContainer = styled.div`
