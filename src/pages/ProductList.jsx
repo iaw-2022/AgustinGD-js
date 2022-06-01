@@ -88,16 +88,15 @@ const ProductList = (props) => {
   }, [category_name, categoriaSeleccionada]);
 
   useEffect(() => {
-
     const fetchProducts = async () => {
       try {
         const response = await apiBase.get(`/productos/categoria/${category.id}`)
         setProducts(response.data)
       } catch (err) {
-        mostrarError("No se pudieron Recuperar los Productos, Refresque la pagina porfavor...")
+        mostrarError("No se pudieron Recuperar los Productos, refresque la pagina porfavor...")
       }
     }
-    if (category)
+    if (category && !Array.isArray(category))
       fetchProducts();
   }, [category]);
 
