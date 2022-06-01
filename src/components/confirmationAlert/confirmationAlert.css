@@ -1,0 +1,19 @@
+.sweet_confirmButtonImportant{
+    font-weight:1000 !important;
+    color:black !important;
+    background-color: #F6AE2D !important;
+}
+
+.sweet_confirmButtonImportant:focus {
+    box-shadow: 0px 0px 0px 3px #de9d28 !important ;
+}
+
+.sweet_cancelmButtonImportant{
+    font-weight:700 !important;
+    color:black !important;
+    background-color: lightgray !important;
+}
+
+.sweet_titleImportant{
+    color:black !important;
+}

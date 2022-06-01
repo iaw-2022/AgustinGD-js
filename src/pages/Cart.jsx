@@ -13,6 +13,7 @@ import { ORDER_LIST_PATH } from "../utils/Constants";
 import { useState } from "react";
 import { newPromise, updatePromise } from "../components/Alerts";
 import Loading from "../components/Loading";
+import { confirmation } from "../components/confirmationAlert/ConfirmationAlert";
 
 const Container = styled.div``;
 
@@ -139,6 +140,9 @@ const Cart = (props) => {
     return productosCarrito;
   }
 
+  const orderHandler = () => {
+    !orderNowDisabled && confirmation(procesarPedido)
+  }
 
   const procesarPedido = async () => {
     const pedidos = armarPedidos();
@@ -213,7 +217,7 @@ const Cart = (props) => {
           </TopTexts>
           <TopButton
             type="filled"
-            onClick={() => orderNowDisabled ? void (0) : procesarPedido()}
+            onClick={() => orderHandler()}
           >
             COMPRAR AHORA
           </TopButton>
@@ -240,9 +244,7 @@ const Cart = (props) => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{subtotal}</SummaryItemPrice>
             </SummaryItem>
-            <Button
-              onClick={() => orderNowDisabled ? void (0) : procesarPedido()}
-            >
+            <Button onClick={() => orderHandler()}>
               COMPRAR AHORA
             </Button>
           </Summary>

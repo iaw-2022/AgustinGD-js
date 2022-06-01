@@ -64,7 +64,7 @@ export const mostrarError = (mensaje) => {
 
 export const mostrarAlertaCarrito = (mensaje) => {
     toast.info(mensaje, {
-        position: "bottom-left",
+        position: "top-center",
         autoClose: 3000,
         hideProgressBar: false,
         closeOnClick: true,
