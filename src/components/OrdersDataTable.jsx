@@ -13,6 +13,7 @@ import apiBase from "../api/apiBase";
 import { useAuth0 } from '@auth0/auth0-react';
 import { dateFormat } from "../utils/DateFormat";
 import Loading from "./Loading";
+import { mostrarError } from "./Alerts";
 
 const tableHeadStyle = {
     bgcolor: "#33658A",
@@ -54,7 +55,7 @@ const OrdersDataTable = () => {
 
                 setOrders(await response.data);
             } catch (e) {
-                console.error(e);
+                mostrarError("No se pudieron Recuperar las Pedidos, Refresque la pagina porfavor...")
             }
         })();
     }, [getAccessTokenSilently]);

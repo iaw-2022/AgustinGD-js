@@ -6,6 +6,7 @@ import { ordenar } from "../utils/OrdenarJson";
 import apiBase from "../api/apiBase";
 import React, { useEffect, useState } from "react";
 import Loading from "./Loading";
+import { mostrarError } from "./Alerts";
 
 const Container = styled.div`
   padding: 20px;
@@ -25,7 +26,7 @@ const Categories = (props) => {
         const response = await apiBase.get("/categorias")
         setCategories(response.data)
       } catch (err) {
-        console.log("ayayay")
+        mostrarError("No se pudieron Recuperar las Categorias, Refresque la pagina porfavor...")
       }
     }
 

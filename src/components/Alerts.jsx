@@ -50,6 +50,18 @@ export const Alerta = () => {
     )
 }
 
+export const mostrarError = (mensaje) => {
+    toast.error(mensaje, {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined
+    });
+}
+
 export const mostrarAlertaCarrito = (mensaje) => {
     toast.info(mensaje, {
         position: "bottom-left",

@@ -4,6 +4,7 @@ import QuickCategoryItem from "./QuickCategoryItem";
 import apiBase from "../api/apiBase";
 import React, { useEffect, useState } from "react";
 import Loading from "./Loading";
+import { mostrarError } from "./Alerts";
 
 const Container = styled.div`
   display: flex;
@@ -22,7 +23,7 @@ const QuickCategories = (props) => {
         const response = await apiBase.get("/categorias/random/3")
         setRandomCategories(response.data)
       } catch (err) {
-        console.log("ayayay")
+        mostrarError("No se pudieron Recuperar las Categorias, Refresque la pagina porfavor...")
       }
     }
 

@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import apiBase from "../api/apiBase";
 import NotFound from "./NotFound";
 import Loading from "../components/Loading";
+import { mostrarError } from "./../components/Alerts";
 
 const Container = styled.div``;
 
@@ -111,7 +112,7 @@ const Product = (props) => {
           const data = response.data.length === 0 ? response.data : response.data[0];
           setProduct(data)
         } catch (err) {
-          console.log("ayayay")
+          mostrarError("No se pudo Recuperar el Producto, Refresque la pagina porfavor...")
         }
       }
 

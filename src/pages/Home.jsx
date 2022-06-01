@@ -7,6 +7,7 @@ import Newsletter from "../components/Newsletter";
 import Products from "../components/Products";
 import Slider from "./../components/Slider";
 import apiBase from "../api/apiBase";
+import { mostrarError } from "./../components/Alerts";
 
 const Home = (props) => {
   const {productosEnCarrito, setProductoSeleccionado, sumarAlCarrito, setCategoriaSeleccionada} = props;
@@ -18,7 +19,7 @@ const Home = (props) => {
         const response = await apiBase.get("/productos/random/10")
         setProducts(response.data)
       } catch (err){
-        console.log("ayayay")
+        mostrarError("No se pudieron Recuperar los Productos, Refresque la pagina porfavor...")
       }
     }
 

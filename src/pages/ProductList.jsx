@@ -13,6 +13,7 @@ import { opcionesProducto } from "../utils/OrdenarJson";
 import { useParams } from "react-router-dom";
 import NotFound from "./NotFound";
 import Loading from "../components/Loading";
+import { mostrarError } from "./../components/Alerts";
 
 const Container = styled.div``;
 
@@ -76,8 +77,7 @@ const ProductList = (props) => {
           const data = response.data.length === 0 ? response.data : response.data[0];
           setCategory(data)
         } catch (err) {
-          console.log("ayayay")
-          console.log(err)
+          mostrarError("No se pudieron Recuperar los Productos, refresque la pagina porfavor...")
         }
       }
 
@@ -94,7 +94,7 @@ const ProductList = (props) => {
         const response = await apiBase.get(`/productos/categoria/${category.id}`)
         setProducts(response.data)
       } catch (err) {
-        console.log("ayayay")
+        mostrarError("No se pudieron Recuperar los Productos, Refresque la pagina porfavor...")
       }
     }
     if (category)
