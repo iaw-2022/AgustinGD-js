@@ -48,14 +48,16 @@ const Button = styled.button`
 
 const QuickCategoryItem = (props) => {
   const { categoria, setCategoriaSeleccionada } = props
+  const ariaLabel = `Ver Categoria ${categoria.nombre}`
+  const alternateName = `Imagen de ${categoria.nombre}`
 
   return (
     <Container>
-      <Image src={categoria.imagen_dir} />
+      <Image alt={alternateName} src={categoria.imagen_dir} />
       <Info>
         <Title>{categoria.nombre}</Title>
         <Link onClick={() => setCategoriaSeleccionada(categoria)} to={`${PRODUCT_LIST_PATH}/${categoria.nombre}`}>
-          <Button>COMPRAR AHORA</Button>
+          <Button aria-label={ariaLabel}>COMPRAR AHORA</Button>
         </Link>        
       </Info>
     </Container>

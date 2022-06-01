@@ -62,8 +62,8 @@ const AddContainer = styled.div`
   width: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  justify-content: flex-start;
+  ${mobile({ width: "100%", justifyContent: "space-between" })}
 `;
 
 const AmountContainer = styled.div`
@@ -89,6 +89,8 @@ const Button = styled.button`
   background-color: #F6AE2D;
   cursor: pointer;
   font-weight: 500;
+  margin-left: 30px;
+  ${mobile({ marginLeft: "0px" })}
 `;
 
 const Product = (props) => {
@@ -128,13 +130,15 @@ const Product = (props) => {
   if (productNotFound)
     return (<NotFound productosEnCarrito={productosEnCarrito} />)
 
+  const alternateName = `Imagen de ${product.nombre}`
+
   return (
     <Container>
       <Navbar productosEnCarrito={productosEnCarrito} />
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src={product.imagen_dir} />
+          <Image alt={alternateName} src={product.imagen_dir} />
         </ImgContainer>
         <InfoContainer>
           <Title>{product.nombre}</Title>
