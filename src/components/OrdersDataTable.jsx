@@ -12,6 +12,7 @@ import React, { useEffect, useState } from 'react';
 import apiBase from "../api/apiBase";
 import { useAuth0 } from '@auth0/auth0-react';
 import { dateFormat } from "../utils/DateFormat";
+import Loading from "./Loading";
 
 const tableHeadStyle = {
     bgcolor: "#33658A",
@@ -36,7 +37,7 @@ const rowStyle = {
     boxShadow: 4,
 }
 
-const OrdersDataTable = () => {    
+const OrdersDataTable = () => {
     const { getAccessTokenSilently } = useAuth0();
     const [orders, setOrders] = useState(null);
 
@@ -50,7 +51,7 @@ const OrdersDataTable = () => {
                     },
                 };
                 const response = await apiBase.get('/pedidos/cliente', header);
-                
+
                 setOrders(await response.data);
             } catch (e) {
                 console.error(e);
@@ -58,9 +59,8 @@ const OrdersDataTable = () => {
         })();
     }, [getAccessTokenSilently]);
 
-    if (!orders) {
-        return <div>Cargando pedidos...</div>;
-    }
+    if (!orders)
+        return <Loading message={"Cargando Pedidos..."} />
 
     return (
         <TableContainer

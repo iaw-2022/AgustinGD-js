@@ -3,6 +3,7 @@ import { mobile } from "../responsive";
 import QuickCategoryItem from "./QuickCategoryItem";
 import apiBase from "../api/apiBase";
 import React, { useEffect, useState } from "react";
+import Loading from "./Loading";
 
 const Container = styled.div`
   display: flex;
@@ -13,20 +14,24 @@ const Container = styled.div`
 
 const QuickCategories = (props) => {
   const { setCategoriaSeleccionada } = props
-  const [randomCategories, setRandomCategories] = useState([]);
+  const [randomCategories, setRandomCategories] = useState(null);
 
-  useEffect(() => {    
+  useEffect(() => {
     const fetchRandomCategories = async () => {
-      try{
+      try {
         const response = await apiBase.get("/categorias/random/3")
         setRandomCategories(response.data)
-      } catch (err){
+      } catch (err) {
         console.log("ayayay")
       }
     }
 
     fetchRandomCategories();
   }, []);
+
+
+  if (!randomCategories)
+    return <Loading message={"Cargando Categorias..."} />
 
   return (
     <Container>

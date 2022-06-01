@@ -12,6 +12,8 @@ import { useNavigate } from "react-router-dom";
 import { ORDER_LIST_PATH } from "../utils/Constants";
 import { useState } from "react";
 import { newPromise, updatePromise } from "../components/Alerts";
+import Loading from "../components/Loading";
+
 const Container = styled.div``;
 
 const Wrapper = styled.div`
@@ -128,7 +130,7 @@ const Cart = (props) => {
         )
       } else {
         productosCarrito.push(
-          <Hr key={producto.nombre}/>,
+          <Hr key={producto.nombre} />,
           <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito} removerDelcarrito={removerDelcarrito} />
         )
       };
@@ -196,7 +198,8 @@ const Cart = (props) => {
     updatePromise(id, type, mensajeError);
     setOrderNowDisabled(false);
   }
-  if (isLoading) return <div>Cargando Carrito...</div>
+  if (isLoading)
+    return <Loading message={"Cargando Carrito..."} />
 
   return (
     <Container>

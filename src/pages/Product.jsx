@@ -10,6 +10,7 @@ import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 import { useParams } from "react-router-dom";
 import apiBase from "../api/apiBase";
 import NotFound from "./NotFound";
+import Loading from "../components/Loading";
 
 const Container = styled.div``;
 
@@ -120,9 +121,8 @@ const Product = (props) => {
     }
   }, [product_name, productoSeleccionado]);
 
-  if (!product) {
-    return <div>Cargando...</div>
-  }
+  if (!product)
+    return <Loading message={"Cargando Producto..."} />
 
   if (productNotFound)
     return (<NotFound productosEnCarrito={productosEnCarrito} />)

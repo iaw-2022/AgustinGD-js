@@ -3,6 +3,7 @@ import Product from "./Product";
 import { filtrarNombre } from "../utils/FiltrarJson";
 import { ordenar } from "../utils/OrdenarJson";
 import React from "react";
+import Loading from "./Loading";
 
 const Container = styled.div`
     padding: 20px;
@@ -15,7 +16,7 @@ const Products = (props) => {
   const { setProductoSeleccionado, sumarAlCarrito, terminoBusqueda, orden, products } = props;  
 
   if (!products)
-    return <div>Cargando Productos...</div>;
+    return <Loading message={"Cargando Productos..."}/>
 
   const productosFiltrados = terminoBusqueda ? filtrarNombre(products, terminoBusqueda) : products;  
   orden ? ordenar(productosFiltrados, orden): void(0);

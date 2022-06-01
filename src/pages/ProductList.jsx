@@ -12,6 +12,7 @@ import SelectOption from "../components/SelectOption";
 import { opcionesProducto } from "../utils/OrdenarJson";
 import { useParams } from "react-router-dom";
 import NotFound from "./NotFound";
+import Loading from "../components/Loading";
 
 const Container = styled.div``;
 
@@ -64,7 +65,7 @@ const ProductList = (props) => {
   const [orden, setOrden] = useState("");
   const { category_name } = useParams();
   const [category, setCategory] = useState(null);
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
   const categoryNotFound = (category) && (category.length === 0);
 
   useEffect(() => {
@@ -102,9 +103,8 @@ const ProductList = (props) => {
 
 
 
-  if (!category) {
-    return <div>cargando...</div>
-  }
+  if (!category)
+    return <Loading message={"Cargando Productos de la Categoria..."} />
 
   if (categoryNotFound)
     return (<NotFound productosEnCarrito={productosEnCarrito} />)

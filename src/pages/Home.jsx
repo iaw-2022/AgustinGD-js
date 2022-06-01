@@ -10,7 +10,7 @@ import apiBase from "../api/apiBase";
 
 const Home = (props) => {
   const {productosEnCarrito, setProductoSeleccionado, sumarAlCarrito, setCategoriaSeleccionada} = props;
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState(null);
 
   useEffect(() => {    
     const fetchRandomProducts = async () => {
