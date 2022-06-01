@@ -100,8 +100,6 @@ const ProductList = (props) => {
       fetchProducts();
   }, [category]);
 
-
-
   if (!category)
     return <Loading message={"Cargando Productos de la Categoria..."} />
 
@@ -118,11 +116,11 @@ const ProductList = (props) => {
       </Top>
       <FilterContainer>
         <Filter>
-          <FilterText>Filtrar Categorias:</FilterText>
+          <FilterText>Filtrar Productos:</FilterText>
           <SearchBar setTerminoBusqueda={setTerminoBusqueda} />
         </Filter>
         <Filter>
-          <FilterText>Ordenar Categorias:</FilterText>
+          <FilterText>Ordenar Productos:</FilterText>
           <SelectOption
             opciones={opcionesProducto}
             setOrden={setOrden}
