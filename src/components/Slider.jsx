@@ -57,7 +57,10 @@ const ImgContainer = styled.div`
 `;
 
 const Image = styled.img`
-  height: 80%;  
+  height: 80%;
+  max-height: 1000px;
+  max-width: 600px;
+  object-fit: contain;  
 `;
 
 const InfoContainer = styled.div`
