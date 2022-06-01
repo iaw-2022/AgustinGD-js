@@ -52,14 +52,14 @@ const Slide = styled.div`
 
 const ImgContainer = styled.div`
   height: 100%;
+  width: 50%;
   flex: 1;
   ${tablet({ display: "none" })}
 `;
 
 const Image = styled.img`
   height: 80%;
-  max-height: 1000px;
-  max-width: 600px;
+  width: 100%;
   object-fit: contain;  
 `;
 
