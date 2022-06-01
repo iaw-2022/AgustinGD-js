@@ -122,8 +122,6 @@ const App = () => {
         <Route path={NOT_FOUND_PATH} element={<NotFound 
           productosEnCarrito={productosEnCarrito} 
         />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
   );
