@@ -54,15 +54,16 @@ const Button = styled.button`
 
 const CategoryItem = (props) => {
   const { categoria, setCategoriaSeleccionada } = props
+  const alternateName = `Imagen de ${categoria.nombre}`
 
   return (
     <Container>
-      <Image src={categoria.img} />
+      <Image alt={alternateName} src={categoria.imagen_dir} />
       <Info>
         <Title>{categoria.nombre}</Title>
-        <Link onClick={() => setCategoriaSeleccionada(categoria)} to={PRODUCT_LIST_PATH}>
+        <Link onClick={() => setCategoriaSeleccionada(categoria)} to={`${PRODUCT_LIST_PATH}/${categoria.nombre}`}>
           <Button>COMPRAR AHORA</Button>
-        </Link>        
+        </Link>
       </Info>
     </Container>
   );

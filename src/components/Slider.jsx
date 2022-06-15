@@ -52,12 +52,15 @@ const Slide = styled.div`
 
 const ImgContainer = styled.div`
   height: 100%;
+  width: 50%;
   flex: 1;
   ${tablet({ display: "none" })}
 `;
 
 const Image = styled.img`
-  height: 80%;  
+  height: 80%;
+  width: 100%;
+  object-fit: contain;  
 `;
 
 const InfoContainer = styled.div`
@@ -107,7 +110,7 @@ const Slider = () => {
         {sliderItems.map((item) => (
           <Slide bg={item.bg} key={item.id}>
             <ImgContainer>
-              <Image src={item.img} />
+              <Image alt={item.alt} src={item.img} />
             </ImgContainer>
             <InfoContainer>
               <Title>{item.title}</Title>

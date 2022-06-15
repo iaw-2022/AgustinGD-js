@@ -6,6 +6,14 @@ import CartProduct from "../components/CartProduct";
 import { tablet } from "../responsive";
 import { PrecioTotalProductosCarrito, CantidadTotalProductosCarrito } from "../utils/OperacionesCarrito";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
+import apiBase from "../api/apiBase";
+import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from "react-router-dom";
+import { ORDER_LIST_PATH } from "../utils/Constants";
+import { useState } from "react";
+import { newPromise, updatePromise } from "../components/Alerts";
+import Loading from "../components/Loading";
+import { confirmation } from "../components/confirmationAlert/ConfirmationAlert";
 
 const Container = styled.div``;
 
@@ -100,66 +108,119 @@ const Button = styled.button`
 `;
 
 const Cart = (props) => {
-  const {productosEnCarrito, sumarAlCarrito, restarAlCarrito, removerDelcarrito, limpiarCarrito} = props;
+  const { productosEnCarrito, sumarAlCarrito, restarAlCarrito, removerDelcarrito, limpiarCarrito } = props;
   const precioTotalProductosCarrito = PrecioTotalProductosCarrito(productosEnCarrito);
   const cantidadTotalProductosCarrito = CantidadTotalProductosCarrito(productosEnCarrito);
-  const idCliente = 1;
   const subtotal = formatoMonedaArgentina(precioTotalProductosCarrito);
   const funnyTax = formatoMonedaArgentina(399.99);
   const funnyDiscount = formatoMonedaArgentina(-399.99);
+  const { getAccessTokenSilently, isLoading, isAuthenticated, loginWithRedirect } = useAuth0();
+  const navigate = useNavigate();
+  const [orderNowDisabled, setOrderNowDisabled] = useState(false);
 
-  const mostrarProductosCarrito = () =>{
+  const mostrarProductosCarrito = () => {
     const productosCarrito = [];
     var producto = {};
-    
-    for (var i=0; i < productosEnCarrito.length; i++) {
+
+    for (var i = 0; i < productosEnCarrito.length; i++) {
       producto = productosEnCarrito[i];
 
-      if(i === 0){
+      if (i === 0) {
         productosCarrito.push(
-          <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito} removerDelcarrito={removerDelcarrito}/>
+          <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito} removerDelcarrito={removerDelcarrito} />
         )
-      } else{
-        productosCarrito.push(          
-            <Hr />,
-            <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito} removerDelcarrito={removerDelcarrito}/>          
+      } else {
+        productosCarrito.push(
+          <Hr key={producto.nombre} />,
+          <CartProduct producto={producto} key={producto.id} sumarAlCarrito={sumarAlCarrito} restarAlCarrito={restarAlCarrito} removerDelcarrito={removerDelcarrito} />
         )
       };
     };
 
     return productosCarrito;
-  } 
+  }
 
-  const procesarPedido = () => { 
+  const orderHandler = () => {
+    !orderNowDisabled && confirmation(procesarPedido)
+  }
+
+  const procesarPedido = async () => {
     const pedidos = armarPedidos();
-    guardarPedidoApi(pedidos);
-    limpiarCarrito();
+    var id = null;
+    setOrderNowDisabled(true);
+
+    try {
+      if (pedidos.length === 0) {
+        console.log("No hay productos en el carrito");
+      } else if (!isAuthenticated) {
+        loginWithRedirect()
+      } else {
+        const promiseMessage = "Procesando Pedido"
+        id = newPromise(promiseMessage);
+
+        await guardarPedidoApi(pedidos)
+          .then(() => setTimeout(apiSuccess, 1500, id))
+      }
+    } catch (e) {
+      setTimeout(apiError, 1500, id)
+    }
   }
 
   const armarPedidos = () => {
     return productosEnCarrito.reduce((pedidosAux, productoEnCarrito) =>
       [...pedidosAux, {
-        cliente_id: idCliente, 
-        producto_id: productoEnCarrito.id, 
-        cantidad: productoEnCarrito.cantidad}], []
+        producto_id: productoEnCarrito.id,
+        cantidad: productoEnCarrito.cantidad
+      }], []
     )
   };
 
-  const guardarPedidoApi = (pedidos) => {
-    console.log(pedidos);
+  const guardarPedidoApi = async (pedidos) => {
+    const token = await getAccessTokenSilently();
+    const header = {
+      headers: {
+        authorization: `Bearer ${token}`,
+      },
+    };
+    await apiBase.post('/pedidos/cliente', pedidos, header);
   };
+
+  const apiSuccess = (id) => {
+    const mensajeError = "Pedidos Cargados Exitosamente";
+    const type = "success";
+
+    updatePromise(id, type, mensajeError);
+    limpiarCarrito();
+    navigate(ORDER_LIST_PATH);
+    setOrderNowDisabled(false);
+  }
+
+  const apiError = (id) => {
+    const mensajeError = "Hubo un error al procesar el pedido, intente denuevo...";
+    const type = "error"
+
+    updatePromise(id, type, mensajeError);
+    setOrderNowDisabled(false);
+  }
+  if (isLoading)
+    return <Loading message={"Cargando Carrito..."} />
 
   return (
     <Container>
-      <Navbar productosEnCarrito={productosEnCarrito}/>
+      <Navbar productosEnCarrito={productosEnCarrito} />
       <Announcement />
       <Wrapper>
         <Title>TU CARRITO DE COMPRAS</Title>
-        <Top>         
+        <Top>
           <TopTexts>
             <TopText>Carrito de compras({cantidadTotalProductosCarrito})</TopText>
           </TopTexts>
-          <TopButton type="filled">COMPRAR AHORA</TopButton>
+          <TopButton
+            type="filled"
+            onClick={() => orderHandler()}
+          >
+            COMPRAR AHORA
+          </TopButton>
         </Top>
         <Bottom>
           <Info>
@@ -183,7 +244,9 @@ const Cart = (props) => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>{subtotal}</SummaryItemPrice>
             </SummaryItem>
-            <Button onClick={() => procesarPedido()}>COMPRAR AHORA</Button>
+            <Button onClick={() => orderHandler()}>
+              COMPRAR AHORA
+            </Button>
           </Summary>
         </Bottom>
       </Wrapper>

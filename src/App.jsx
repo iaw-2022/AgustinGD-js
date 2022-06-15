@@ -1,51 +1,49 @@
 import Product from "./pages/Product";
 import Home from "./pages/Home";
 import ProductList from "./pages/ProductList";
-import Register from "./pages/Register";
-import Login from "./pages/Login";
 import Cart from "./pages/Cart";
+import NotFound from "./pages/NotFound";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CategoryList from "./pages/CategoryList";
 import { mostrarAlertaCarrito } from "./components/Alerts";
 import OrderList from "./pages/OrderList"
 import ScrollToTop from "./utils/ScrollToTop";
-import { productoSeleccionadoDefault, categoriaSeleccionadaDefault } from "./utils/DefaultData";
 import {
   HOME_PATH,
   SHOPPING_CART_PATH,
   PRODUCT_PATH,
   PRODUCT_LIST_PATH,
-  CATEGORY_LIST_PATH,  
-  ORDER_LIST_PATH,  
+  CATEGORY_LIST_PATH,
+  ORDER_LIST_PATH,
+  NOT_FOUND_PATH,
 } from "./utils/Constants"
+import { Alerta } from "./components/Alerts";
 
 const App = () => {
 
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(categoriaSeleccionadaDefault);
-
-  const [productoSeleccionado, setProductoSeleccionado] = useState(() => {
-    const localData = localStorage.getItem('productoSeleccionado');
-    return localData ? JSON.parse(localData) : productoSeleccionadoDefault;
-  });
-
-  useEffect(()=> {
-    localStorage.setItem('productoSeleccionado', JSON.stringify(productoSeleccionado))
-  }, [productoSeleccionado]);
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
+  const [productoSeleccionado, setProductoSeleccionado] = useState(null);
 
   const [productosEnCarrito, setproductosEnCarrito] = useState(() => {
     const localData = localStorage.getItem('productosEnCarrito');
     return localData ? JSON.parse(localData) : [];
   });
 
-  useEffect(()=> {
+  useEffect(() => {
     localStorage.setItem('productosEnCarrito', JSON.stringify(productosEnCarrito))
   }, [productosEnCarrito]);
-  
+
+  const sumarAlCarritoAlerta = (producto, cantidadElegida) => {
+    const cantidadASumar = sumarAlCarrito(producto, cantidadElegida)
+
+    mostrarAlertaCarrito(`${producto.nombre} x ${cantidadASumar}`);
+  };
+
   const sumarAlCarrito = (producto, cantidadElegida) => {
     const cantidadASumar = cantidadElegida ? cantidadElegida : 1;
     const existe = productosEnCarrito.find((x) => x.id === producto.id);
-    
+
     if (existe) {
       setproductosEnCarrito(
         productosEnCarrito.map((x) =>
@@ -53,10 +51,10 @@ const App = () => {
         )
       );
     } else {
-      setproductosEnCarrito([...productosEnCarrito, { ...producto, cantidad: cantidadASumar }]);         
+      setproductosEnCarrito([...productosEnCarrito, { ...producto, cantidad: cantidadASumar }]);
     }
-    
-    mostrarAlertaCarrito(`${producto.nombre} x ${cantidadASumar}`);
+
+    return cantidadASumar;
   };
 
   const restarAlCarrito = (producto) => {
@@ -82,48 +80,49 @@ const App = () => {
   const limpiarCarrito = () => {
     setproductosEnCarrito([]);
   };
-   
+
   return (
     <Router>
-      <ScrollToTop/>
+      <ScrollToTop />
+      <Alerta />
       <Routes>
-        <Route path={HOME_PATH} element={<Home 
-            productosEnCarrito={productosEnCarrito} 
-            setProductoSeleccionado={setProductoSeleccionado} 
-            sumarAlCarrito={sumarAlCarrito}
-            setCategoriaSeleccionada={setCategoriaSeleccionada}
+        <Route path={HOME_PATH} element={<Home
+          productosEnCarrito={productosEnCarrito}
+          setProductoSeleccionado={setProductoSeleccionado}
+          sumarAlCarrito={sumarAlCarritoAlerta}
+          setCategoriaSeleccionada={setCategoriaSeleccionada}
         />} />
-        <Route path={SHOPPING_CART_PATH} element={<Cart 
-            productosEnCarrito={productosEnCarrito} 
-            sumarAlCarrito={sumarAlCarrito} 
-            restarAlCarrito={restarAlCarrito} 
-            removerDelcarrito={removerDelcarrito} 
-            limpiarCarrito={limpiarCarrito}
-        />} />
-        <Route path={PRODUCT_PATH} element={<Product 
-          productosEnCarrito={productosEnCarrito} 
-          productoSeleccionado={productoSeleccionado} 
-          sumarAlCarrito={sumarAlCarrito} 
-        />} />
-        <Route path={PRODUCT_LIST_PATH} element={<ProductList 
-          productosEnCarrito={productosEnCarrito} 
-          setProductoSeleccionado={setProductoSeleccionado} 
+        <Route path={SHOPPING_CART_PATH} element={<Cart
+          productosEnCarrito={productosEnCarrito}
           sumarAlCarrito={sumarAlCarrito}
+          restarAlCarrito={restarAlCarrito}
+          removerDelcarrito={removerDelcarrito}
+          limpiarCarrito={limpiarCarrito}
+        />} />
+        <Route path={`${PRODUCT_PATH}/:product_name`} element={<Product
+          productosEnCarrito={productosEnCarrito}
+          productoSeleccionado={productoSeleccionado}
+          sumarAlCarrito={sumarAlCarritoAlerta}
+        />} />
+        <Route path={`${PRODUCT_LIST_PATH}/:category_name`} element={<ProductList
+          productosEnCarrito={productosEnCarrito}
+          setProductoSeleccionado={setProductoSeleccionado}
+          sumarAlCarrito={sumarAlCarritoAlerta}
           categoriaSeleccionada={categoriaSeleccionada}
         />} />
-        <Route path={CATEGORY_LIST_PATH} element={<CategoryList 
+        <Route path={CATEGORY_LIST_PATH} element={<CategoryList
           productosEnCarrito={productosEnCarrito}
-          setCategoriaSeleccionada={setCategoriaSeleccionada} 
+          setCategoriaSeleccionada={setCategoriaSeleccionada}
         />} />
-        <Route path={ORDER_LIST_PATH} element={<OrderList 
-          productosEnCarrito={productosEnCarrito} 
+        <Route path={ORDER_LIST_PATH} element={<OrderList
+          productosEnCarrito={productosEnCarrito}
         />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path={NOT_FOUND_PATH} element={<NotFound
+          productosEnCarrito={productosEnCarrito}
+        />} />
       </Routes>
     </Router>
   );
-  //return <Home/>;
 };
 
 export default App;

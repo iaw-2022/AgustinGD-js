@@ -49,6 +49,8 @@ const Circle = styled.div`
 
 const Image = styled.img`
   height: 75%;
+  max-width: 105%;
+  object-fit: contain;
   z-index: 2;
 `;
 
@@ -70,16 +72,17 @@ const Icon = styled.div`
 
 const Product = (props) => {
   const {producto, setProductoSeleccionado, sumarAlCarrito} = props;
+  const alternateName = `Imagen de ${producto.nombre}`
   
   return (
     <Container>
       <Circle />
-      <Image src={producto.img} />
+      <Image alt={alternateName} src={producto.imagen_dir} />
       <Info>
         <Icon onClick={() => sumarAlCarrito(producto)}>
           <ShoppingCartOutlined style={{ color: "black"}}/>
         </Icon>
-        <Link onClick={() => setProductoSeleccionado(producto)} to={PRODUCT_PATH}>
+        <Link onClick={() => setProductoSeleccionado(producto)} to={`${PRODUCT_PATH}/${producto.nombre}`}>
           <Icon>
             <SearchOutlined style={{ color: "black"}}/>
           </Icon>

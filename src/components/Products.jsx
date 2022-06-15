@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import { popularProducts as productos } from "../data";
 import Product from "./Product";
 import { filtrarNombre } from "../utils/FiltrarJson";
 import { ordenar } from "../utils/OrdenarJson";
+import React from "react";
+import Loading from "./Loading";
 
 const Container = styled.div`
     padding: 20px;
@@ -12,9 +13,12 @@ const Container = styled.div`
 `;
 
 const Products = (props) => {
-  const { setProductoSeleccionado, sumarAlCarrito, terminoBusqueda, orden } = props;
+  const { setProductoSeleccionado, sumarAlCarrito, terminoBusqueda, orden, products } = props;  
 
-  const productosFiltrados = terminoBusqueda ? filtrarNombre(productos, terminoBusqueda) : productos;  
+  if (!products)
+    return <Loading message={"Cargando Productos..."}/>
+
+  const productosFiltrados = terminoBusqueda ? filtrarNombre(products, terminoBusqueda) : products;  
   orden ? ordenar(productosFiltrados, orden): void(0);
 
   return (

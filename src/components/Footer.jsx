@@ -50,7 +50,7 @@ const Center = styled.div`
   ${mobile({ display: "none" })}
 `;
 
-const Title = styled.h3`
+const Title = styled.h2`
   margin-bottom: 30px;
 `;
 
@@ -130,7 +130,7 @@ const Footer = () => {
         <ContactItem>
           <MailOutline style={{marginRight:"10px"}} /> contacto@mei.granja
         </ContactItem>
-        <Payment src="https://i.ibb.co/Qfvn4z6/payment.png" />
+        <Payment alt="Formas de pago" src="https://i.ibb.co/Qfvn4z6/payment.png" />
       </Right>
     </Container>
   );

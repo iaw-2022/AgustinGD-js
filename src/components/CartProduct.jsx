@@ -16,6 +16,8 @@ const ProductDetail = styled.div`
 
 const Image = styled.img`
   width: 200px;
+  height: 200px;
+  object-fit: contain;
 `;
 
 const Details = styled.div`
@@ -33,13 +35,6 @@ const BoldText = styled.b`
 `;
 
 const ProductId = styled.span``;
-
-const ProductColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
-`;
 
 const ProductSize = styled.span``;
 
@@ -83,11 +78,13 @@ const PriceContainer = styled.div`
 `;
 
 const CartProduct = (props) => {
-    const {producto, sumarAlCarrito, restarAlCarrito, removerDelcarrito} = props;
-    return (
-      <Product>
+  const { producto, sumarAlCarrito, restarAlCarrito, removerDelcarrito } = props;
+  const alternateName = `Imagen de ${producto.nombre}`
+
+  return (
+    <Product>
       <ProductDetail>
-        <Image src={producto.img} />
+        <Image alt={alternateName} src={producto.imagen_dir} />
         <Details>
           <ProductName>
             <BoldText>Producto:</BoldText> {producto.nombre}
@@ -102,39 +99,39 @@ const CartProduct = (props) => {
       </ProductDetail>
       <PriceDetail>
         <ProductAmountContainer>
-          <Add 
+          <Add
             onClick={() => sumarAlCarrito(producto)}
             style={{
               cursor: "pointer",
               color: "#ED6A5E",
-            }} 
+            }}
           />
           <ProductAmount>{producto.cantidad}</ProductAmount>
           {(producto.cantidad !== 1) ?
-           (
-            <Remove
-            onClick={() => restarAlCarrito(producto)}
-            style={{
-              cursor: "pointer",
-              color: "#ED6A5E",
-            }} 
-           />
-           ) : (
-            <DeleteOutline
-            onClick={() => removerDelcarrito(producto)}
-            style={{
-              cursor: "pointer",
-              fontSize: "24px",
-              color: "#ED6A5E"
-            }}
-            />
-          )}
-          
+            (
+              <Remove
+                onClick={() => restarAlCarrito(producto)}
+                style={{
+                  cursor: "pointer",
+                  color: "#ED6A5E",
+                }}
+              />
+            ) : (
+              <DeleteOutline
+                onClick={() => removerDelcarrito(producto)}
+                style={{
+                  cursor: "pointer",
+                  fontSize: "24px",
+                  color: "#ED6A5E"
+                }}
+              />
+            )}
+
         </ProductAmountContainer>
         <PriceContainer>
           <ProductPrice>{formatoMonedaArgentina(producto.cantidad * producto.precioPorUnidad)}</ProductPrice>
-          { (producto.cantidad !== 1) && (
-              <DeleteOutline
+          {(producto.cantidad !== 1) && (
+            <DeleteOutline
               onClick={() => removerDelcarrito(producto)}
               style={{
                 cursor: "pointer",
@@ -143,11 +140,11 @@ const CartProduct = (props) => {
               }}
             />
           )}
-                   
-        </PriceContainer>        
+
+        </PriceContainer>
       </PriceDetail>
-      </Product>
-    );
-  };
-  
-  export default CartProduct;
+    </Product>
+  );
+};
+
+export default CartProduct;

@@ -8,7 +8,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 const Container = styled.div`
     height: 40px;
     width: 135px;
-    ${mobile({ height: "32px" })}
+    ${mobile({ height: "34px" })}
 `;
 
 const Option = styled.option``;
@@ -43,17 +43,17 @@ const ProfileDropDown = () => {
     const username = user.name.split(' ').shift().toUpperCase();
     USERNAME_OPTION.title = username;
 
+    const optionsList = options.map((option) => (
+        makeOption(option)
+    ))
+    
     return (
         <Container>
             <Select
                 value={USERNAME_OPTION.value}
                 onChange={(event) => { handleChange(event, navigate, logout) }}
             >
-                {options.map((option) => (
-                    <>
-                        {makeOption(option)}
-                    </>
-                ))}
+                {optionsList}
             </Select>
         </Container>
 

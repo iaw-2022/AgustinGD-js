@@ -1,4 +1,3 @@
-import { pedidos } from "../data";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
 import {
     TableContainer,
@@ -9,6 +8,12 @@ import {
     TableCell,
     Paper
 } from "@mui/material";
+import React, { useEffect, useState } from 'react';
+import apiBase from "../api/apiBase";
+import { useAuth0 } from '@auth0/auth0-react';
+import { dateFormat } from "../utils/DateFormat";
+import Loading from "./Loading";
+import { mostrarError } from "./Alerts";
 
 const tableHeadStyle = {
     bgcolor: "#33658A",
@@ -34,6 +39,30 @@ const rowStyle = {
 }
 
 const OrdersDataTable = () => {
+    const { getAccessTokenSilently } = useAuth0();
+    const [orders, setOrders] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const token = await getAccessTokenSilently();
+                const header = {
+                    headers: {
+                        authorization: `Bearer ${token}`,
+                    },
+                };
+                const response = await apiBase.get('/pedidos/cliente', header);
+
+                setOrders(await response.data);
+            } catch (e) {
+                mostrarError("No se pudieron Recuperar las Pedidos, Refresque la pagina porfavor...")
+            }
+        })();
+    }, [getAccessTokenSilently]);
+
+    if (!orders)
+        return <Loading message={"Cargando Pedidos..."} />
+
     return (
         <TableContainer
             component={Paper}
@@ -53,7 +82,7 @@ const OrdersDataTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody >
-                    {zebraColumns()}
+                    {zebraColumns(orders)}
                 </TableBody>
             </Table>
         </TableContainer>
@@ -62,8 +91,8 @@ const OrdersDataTable = () => {
 
 export default OrdersDataTable;
 
-const zebraColumns = () => {
-    return pedidos.map((row, index) =>
+const zebraColumns = (orders) => {
+    return orders.map((row, index) =>
         (index % 2)
             ? (
                 <TableRow key={row.id} sx={{ ...rowStyle, backgroundColor: "#DEF4FF" }} >
@@ -78,10 +107,11 @@ const zebraColumns = () => {
 }
 
 const tableCells = (row) => {
+    const formatedOrderDate = dateFormat(row.created_at);
     return (
         <>
-            <TableCell className="tableCell">{row.fecha}</TableCell>
-            <TableCell className="tableCell">{row.producto_nombre}</TableCell>
+            <TableCell className="tableCell">{formatedOrderDate}</TableCell>
+            <TableCell className="tableCell">{row.nombre}</TableCell>
             <TableCell className="tableCell">x{row.cantidad}</TableCell>
             <TableCell className="tableCell">{formatoMonedaArgentina(row.total)}</TableCell>
         </>

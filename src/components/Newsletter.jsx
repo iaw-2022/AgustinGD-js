@@ -54,8 +54,8 @@ const Newsletter = () => {
       <Desc>No te pierdas las noticias sobre nuestros productos.</Desc>
       <InputContainer>
         <Input placeholder="Tu email" />
-        <Button>
-          <Send />
+        <Button aria-label="Enviar">
+          <Send alt=""/>
         </Button>
       </InputContainer>
     </Container>

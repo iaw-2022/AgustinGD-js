@@ -6,6 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { Route } from 'react-router-dom';
 import styled from "styled-components";
 import OrdersDataTable from "../components/OrdersDataTable";
+import Loading from "../components/Loading";
 
 const Container = styled.div``;
 
@@ -32,7 +33,8 @@ const OrderList = (props) => {
     const { productosEnCarrito } = props;
     const { isAuthenticated, isLoading } = useAuth0();
 
-    if (isLoading) return <div>Cargando...</div>
+    if (isLoading)
+        return <Loading message={"Cargando Mis Pedidos..."} />
 
     return (
         <Container>

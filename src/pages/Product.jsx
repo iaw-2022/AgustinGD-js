@@ -5,16 +5,20 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { formatoMonedaArgentina } from "../utils/FormatoMonedaArgentina";
-import { Alerta } from "../components/Alerts";
+import { useParams } from "react-router-dom";
+import apiBase from "../api/apiBase";
+import NotFound from "./NotFound";
+import Loading from "../components/Loading";
+import { mostrarError } from "./../components/Alerts";
 
 const Container = styled.div``;
 
 const Wrapper = styled.div`
   padding: 50px;
   display: flex;
-  ${mobile({ padding: "10px", flexDirection:"column" })}
+  ${mobile({ padding: "10px", flexDirection: "column" })}
 `;
 
 const ImgContainer = styled.div`
@@ -24,7 +28,7 @@ const ImgContainer = styled.div`
 const Image = styled.img`
   width: 100%;
   height: 90vh;
-  object-fit: cover;
+  object-fit: contain;
   ${mobile({ height: "40vh" })}
 `;
 
@@ -37,6 +41,7 @@ const InfoContainer = styled.div`
 const Title = styled.h1`
   font-weight: 400;
   color: #33658a;
+  font-weight: bold;
 `;
 
 const Desc = styled.p`
@@ -52,47 +57,13 @@ const Price = styled.span`
   font-size: 40px;
 `;
 
-const FilterContainer = styled.div`
-  width: 50%;
-  margin: 30px 0px;
-  display: flex;
-  justify-content: space-between;
-  ${mobile({ width: "100%" })}
-`;
-
-const Filter = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const FilterTitle = styled.span`
-  font-size: 20px;
-  font-weight: 200;
-`;
-
-const FilterColor = styled.div`
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: ${(props) => props.color};
-  margin: 0px 5px;
-  cursor: pointer;
-`;
-
-const FilterSize = styled.select`
-  margin-left: 10px;
-  padding: 5px;
-`;
-
-const FilterSizeOption = styled.option``;
-
 const AddContainer = styled.div`
   padding-top: 50px;
   width: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  ${mobile({ width: "100%" })}
+  justify-content: flex-start;
+  ${mobile({ width: "100%", justifyContent: "space-between" })}
 `;
 
 const AmountContainer = styled.div`
@@ -118,38 +89,67 @@ const Button = styled.button`
   background-color: #F6AE2D;
   cursor: pointer;
   font-weight: 500;
+  margin-left: 30px;
+  ${mobile({ marginLeft: "0px" })}
 `;
 
 const Product = (props) => {
-  const {productosEnCarrito, productoSeleccionado, sumarAlCarrito} = props;
+  const { productosEnCarrito, productoSeleccionado, sumarAlCarrito } = props;
+  const [cantidadASumar, setCantidadASumar] = useState(1);
+  const { product_name } = useParams();
+  const [product, setProduct] = useState(null);
+  const productNotFound = (product) && (product.length === 0);
 
-  const [cantidadASumar, setCantidadASumar] = useState(1);  
-
-  const sumarCantidad = () => { setCantidadASumar(cantidadASumar+1) };
+  const sumarCantidad = () => { setCantidadASumar(cantidadASumar + 1) };
 
   const restarCantidad = () => {
-   if (cantidadASumar > 1)  setCantidadASumar(cantidadASumar-1) ;
+    if (cantidadASumar > 1) setCantidadASumar(cantidadASumar - 1);
   };
+
+  useEffect(() => {
+    if (!productoSeleccionado) {
+      const fetchProduct = async () => {
+        try {
+          const response = await apiBase.get(`/productos/${product_name}`)
+          const data = response.data.length === 0 ? response.data : response.data[0];
+          setProduct(data)
+        } catch (err) {
+          mostrarError("No se pudo Recuperar el Producto, Refresque la pagina porfavor...")
+        }
+      }
+
+      fetchProduct();
+    } else {
+      setProduct(productoSeleccionado);
+    }
+  }, [product_name, productoSeleccionado]);
+
+  if (!product)
+    return <Loading message={"Cargando Producto..."} />
+
+  if (productNotFound)
+    return (<NotFound productosEnCarrito={productosEnCarrito} />)
+
+  const alternateName = `Imagen de ${product.nombre}`
 
   return (
     <Container>
-      <Alerta/> 
-      <Navbar productosEnCarrito={productosEnCarrito}/>
+      <Navbar productosEnCarrito={productosEnCarrito} />
       <Announcement />
       <Wrapper>
         <ImgContainer>
-          <Image src={productoSeleccionado.img} />
+          <Image alt={alternateName} src={product.imagen_dir} />
         </ImgContainer>
         <InfoContainer>
-          <Title> <b>{productoSeleccionado.nombre}</b> con id: {productoSeleccionado.id}</Title>
-          <Desc> {productoSeleccionado.descripcion} </Desc>
+          <Title>{product.nombre}</Title>
+          <Desc> {product.descripcion} </Desc>
           <UnitPrice>
-          {formatoMonedaArgentina(productoSeleccionado.precioPorUnidad)} (la unidad)
+            {formatoMonedaArgentina(product.precioPorUnidad)} (la unidad)
           </UnitPrice>
-          <Price>{formatoMonedaArgentina(cantidadASumar * productoSeleccionado.precioPorUnidad)}</Price>
+          <Price>{formatoMonedaArgentina(cantidadASumar * product.precioPorUnidad)}</Price>
           <AddContainer>
             <AmountContainer>
-              <Remove 
+              <Remove
                 onClick={() => restarCantidad()}
                 style={{
                   cursor: "pointer",
@@ -157,7 +157,7 @@ const Product = (props) => {
                 }}
               />
               <Amount>{cantidadASumar}</Amount>
-              <Add 
+              <Add
                 onClick={() => sumarCantidad()}
                 style={{
                   cursor: "pointer",
@@ -165,7 +165,7 @@ const Product = (props) => {
                 }}
               />
             </AmountContainer>
-            <Button onClick={() => sumarAlCarrito(productoSeleccionado, cantidadASumar)}>AÑADIR AL CARRITO</Button>
+            <Button onClick={() => sumarAlCarrito(product, cantidadASumar)}>AÑADIR AL CARRITO</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
